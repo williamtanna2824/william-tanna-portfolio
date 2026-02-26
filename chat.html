@@ -478,10 +478,12 @@
 
             try {
                 // Call backend API (API key is stored securely in backend .env)
+                // Production: Replace with your Render backend URL (e.g. https://william-tanna-chat.onrender.com)
+                const PRODUCTION_API = 'https://william-tanna-chat.onrender.com';
                 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
                     ? 'http://localhost:8000'
-                    : '';  // Same origin when deployed
-                const apiUrl = API_BASE ? `${API_BASE}/api/chat` : '/api/chat';
+                    : PRODUCTION_API;
+                const apiUrl = `${API_BASE}/api/chat`;
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -504,7 +506,11 @@
             } catch (error) {
                 document.getElementById(typingId).remove();
                 console.error('Error:', error);
-                addMessage('Sorry, I can\'t connect to the AI. Make sure: (1) You\'re viewing this at <strong>http://localhost:8080</strong> (run: python3 -m http.server 8080), not by opening the file directly. (2) The backend is running: <code>cd backend && uvicorn main:app --port 8000</code>', 'bot');
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const errMsg = isLocal
+                    ? 'Sorry, I can\'t connect to the AI. Make sure: (1) You\'re viewing at <strong>http://localhost:8080</strong> (run: python3 -m http.server 8080). (2) The backend is running: <code>cd backend && uvicorn main:app --port 8000</code>'
+                    : 'Sorry, I can\'t connect to the AI right now. Please try again in a moment.';
+                addMessage(errMsg, 'bot');
             } finally {
                 // Re-enable input
                 sendBtn.disabled = false;
