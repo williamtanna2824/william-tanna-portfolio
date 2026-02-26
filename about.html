@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — William Tanna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #111111;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --text: #e5e5e5;
+            --text-muted: #9a9a9a;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--black);
+        }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem; font-weight: 600;
+            color: var(--gold); text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .menu-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        }
+        .page-header {
+            margin-top: 60px;
+            background: var(--black-soft);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+        .page-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        .about-photo {
+            background: var(--black-card);
+            padding: 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .about-photo img {
+            width: 100%;
+            max-width: 360px;
+            margin-bottom: 1rem;
+        }
+        .photo-caption {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .about-summary {
+            background: var(--black-card);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .about-summary h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .about-summary p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        .details-section {
+            background: var(--black-card);
+            padding: 3rem;
+            border: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+        .details-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .detail-card {
+            padding: 1.5rem;
+            background: var(--black-soft);
+            border-left: 2px solid var(--gold);
+        }
+        .detail-label {
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .detail-value {
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .detail-value a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .detail-value a:hover { color: var(--gold-light); }
+        .story-section {
+            background: var(--black-card);
+            padding: 3rem;
+            border: 1px solid var(--border);
+        }
+        .story-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        .story-content { display: grid; gap: 1.5rem; }
+        .story-block {
+            padding: 1.75rem;
+            background: var(--black-soft);
+            border: 1px solid var(--border);
+        }
+        .story-block h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        .story-block p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+        .story-block p:last-child { margin-bottom: 0; }
+        .transformation-block {
+            padding: 1.75rem;
+            background: var(--black-soft);
+            border: 1px solid var(--border);
+            margin-top: 1.5rem;
+        }
+        .transformation-block h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        .transformation-block p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .transformation-block a {
+            color: var(--gold);
+            text-decoration: none;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .transformation-block a:hover { color: var(--gold-light); }
+        footer {
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+        .social-links a:hover { color: var(--gold); }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px; left: 0; right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .page-header h1 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .details-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="INDEX.html" class="logo">WT</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="INDEX.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="goals.html">Goals</a></li>
+                <li><a href="chat.html">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>👋 About Me</h1>
+        <p>Finance professional passionate about data-driven decision making and strategic investment analysis</p>
+    </section>
+
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-photo">
+                <img src="images/profile.png" alt="William Tanna" onerror="this.src='https://via.placeholder.com/400x500?text=William+Tanna';">
+                <p class="photo-caption">Finance & Data Analytics</p>
+            </div>
+            <div class="about-summary">
+                <h2>👋 Hello, I'm William</h2>
+                <p>I'm a Finance and Information & Decision Sciences student at the University of Illinois Chicago, pursuing my passion for investment analysis and financial technology. As a CFA Level I candidate, I combine rigorous financial training with advanced data analytics skills to uncover insights and drive strategic decisions.</p>
+                <p>My journey in finance began with a fascination for how markets work and how data can reveal hidden patterns in investment opportunities. This curiosity led me to pursue dual expertise in finance and information systems, allowing me to bridge the gap between traditional financial analysis and modern data science.</p>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h2>📋 Personal Information</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-label">📍 Location</div>
+                    <div class="detail-value">Chicago, Illinois</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">🎓 University</div>
+                    <div class="detail-value">University of Illinois Chicago</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📚 Major</div>
+                    <div class="detail-value">Finance & Information & Decision Sciences</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📊 GPA</div>
+                    <div class="detail-value">3.47</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📜 Certification</div>
+                    <div class="detail-value">CFA Level I Candidate</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📧 Email</div>
+                    <div class="detail-value"><a href="mailto:williamtanna280204@gmail.com">williamtanna280204@gmail.com</a></div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">💼 LinkedIn</div>
+                    <div class="detail-value"><a href="https://linkedin.com/in/williamtanna2824" target="_blank">linkedin.com/in/williamtanna2824</a></div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📸 Instagram</div>
+                    <div class="detail-value"><a href="https://instagram.com/williamtannaa" target="_blank">@Williamtannaa</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2>📖 My Story</h2>
+            <div class="story-content">
+                <div class="story-block">
+                    <h3>🎓 Academic Journey</h3>
+                    <p>At the University of Illinois Chicago, I'm pursuing a dual focus in Finance and Information & Decision Sciences. My coursework spans corporate finance, investment analysis, data analytics, and machine learning. As a CFA Level I candidate, I'm committed to achieving the highest standards in investment management.</p>
+                </div>
+                <div class="story-block">
+                    <h3>💼 Professional Experience</h3>
+                    <p>My internship at Mirae Asset Sharekhan in Mumbai was transformative. I analyzed over ₹12 Cr ($1.5M) in client portfolios, developed investment strategies, and improved reporting processes. Currently, as a Student Equity Analyst at UIC's $150,000 Student Investment Fund, I conduct valuation modeling and present trade recommendations.</p>
+                </div>
+                <div class="story-block">
+                    <h3>🏀 Beyond Finance</h3>
+                    <p>As a Campus Recreation Supervisor at UIC, I lead a team of 30+ officials managing weekly sports operations. I'm also documenting my 87-day transformation challenge on Instagram—growing from 0 to 85 followers in 14 days without marketing, with 23K video views to date.</p>
+                </div>
+                <div class="transformation-block">
+                    <h3>🔥 87-Day Transformation Challenge</h3>
+                    <p>I'm currently documenting my fitness and personal growth journey on Instagram. Building an audience through consistency—no paid marketing, just authentic content. 0→85 followers in 14 days. 23K video views to date.</p>
+                    <a href="https://instagram.com/williamtannaa" target="_blank">Follow on Instagram →</a>
+                </div>
+                <div class="story-block">
+                    <h3>💡 What Drives Me</h3>
+                    <p>I'm passionate about using data and technology to democratize access to sophisticated financial analysis. My goal is to bridge the gap between traditional finance and modern technology, creating solutions that combine fundamental analysis with machine learning and data science.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="mailto:williamtanna280204@gmail.com">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+            </div>
+            <p>© 2025 William Tanna</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('nav');
+            const links = document.getElementById('navLinks');
+            if (!nav.contains(e.target) && links.classList.contains('active')) links.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

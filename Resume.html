@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — William Tanna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #111111;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --text: #e5e5e5;
+            --text-muted: #9a9a9a;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--black);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem; font-weight: 600;
+            color: var(--gold); text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        .menu-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        }
+
+        .page-header {
+            margin-top: 60px;
+            background: var(--black-soft);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2.5rem;
+            background: var(--black-card);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.25rem;
+            top: 2.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--black-card);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .timeline-period {
+            color: var(--text);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-content li {
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .timeline-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-category {
+            background: var(--black-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .skill-category h3 {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skill-icon {
+            font-size: 1.8rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            padding: 0.625rem 1.25rem;
+            background: var(--black-card);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .skill-tag:hover {
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Education Section */
+        .education-section {
+            background: var(--black-card);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .education-item {
+            padding: 2rem;
+            background: var(--black-card);
+            border-radius: 12px;
+            border-left: 2px solid var(--gold);
+        }
+
+        .education-degree {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color 0.25s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.75rem;
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+            }
+
+            .timeline-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="INDEX.html" class="logo">WT</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="INDEX.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Resume.html" class="active">Resume</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="goals.html">Goals</a></li>
+                <li><a href="chat.html">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Resume</h1>
+        <p>Finance professional with expertise in equity analysis, data analytics, and portfolio management</p>
+        <a href="#" class="download-btn">📥 Download PDF Resume</a>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Experience Section -->
+        <section>
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">My journey in finance and analytics</p>
+            
+            <div class="timeline">
+                <!-- Finance Intern - FIRST -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Finance Intern</h3>
+                        <div class="timeline-meta">
+                            <span class="timeline-company">Mirae Asset Sharekhan Ltd.</span>
+                            <span class="timeline-period">July 2024 - September 2024</span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Performed financial analysis and portfolio diagnostics on <strong>20+ investor accounts</strong> worth <strong>INR 12 Cr (~$1.5M)</strong> to support forecasting accuracy.</li>
+                            <li>Presented equity and mutual fund investment ideas that contributed to <strong>3 new client acquisitions</strong> and stronger portfolio diversification.</li>
+                            <li>Automated transaction tracking in Excel, improving reporting efficiency by <strong>30%</strong> and enhancing data accuracy for financial statements.</li>
+                            <li>Verified client KYC and risk profiles during CRM migration to maintain <strong>100% data integrity</strong> and regulatory compliance.</li>
+                            <li>Prepared daily market briefings summarizing index moves, sector trends, and fund performance for senior advisors.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Intramural Sports Referee Supervisor -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Intramural Sports Referee Supervisor</h3>
+                        <div class="timeline-meta">
+                            <span class="timeline-company">Recreation and Wellbeing at UIC</span>
+                            <span class="timeline-period">November 2023 - Present</span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Supervise and train <strong>30+ referees</strong> across basketball, soccer, volleyball, and other sports to maintain consistent rule enforcement and safe play.</li>
+                            <li>Coordinate <strong>50+ weekly games</strong> by managing field readiness, staff assignments, and real-time issue escalation.</li>
+                            <li>De-escalate <strong>dozens of high-pressure disputes</strong> each semester using clear communication to preserve game integrity and participant experience.</li>
+                            <li>Support referee recruitment and onboarding, helping evaluate candidates and speed up training for new hires.</li>
+                            <li>Track incidents, ejections, and participation trends to support data-driven improvements to intramural operations.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Facility Attendant & Outdoor Fields Supervisor -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Facility Attendant & Outdoor Fields Supervisor</h3>
+                        <div class="timeline-meta">
+                            <span class="timeline-company">Recreation and Wellbeing at UIC</span>
+                            <span class="timeline-period"> May 2024 - Present</span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Supervise daily operations of the Outdoor Fields Complex, and the UIC Recreation and Wellbreing facility, enforcing policies to maintain a safe and professional athletic environment.</li>
+                            <li>Coordinate setup and teardown of equipment for <strong>10+ weekly sporting events</strong>, ensuring on-time execution and operational readiness.</li>
+                            <li>Conduct walkthroughs to monitor usage, enforce field protocols, and respond to incidents, escalating safety concerns when necessary.</li>
+                            <li>Complete and file nightly facility, accident, and incident reports to maintain accurate logs for internal review and compliance tracking.</li>
+                            <li>Collaborate with maintenance and facilities teams to resolve field issues quickly and minimize downtime for student programs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Street Team – NEW ROLE -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Street Team – Marketing & Outreach</h3>
+                        <div class="timeline-meta">
+                            <span class="timeline-company">Recreation and Wellbeing at UIC</span>
+                            <span class="timeline-period">January 2024 - Present</span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Support marketing for <strong>50+ UIC Campus Recreation programs</strong>, including intramurals, group fitness, and special events.</li>
+                            <li>Execute physical marketing for <strong>40+ events</strong> such as Rec Fest, and seasonal tournaments through flyering, tabling, and in-person outreach.</li>
+                            <li>Contribute to social and digital campaigns by providing on-the-ground content ideas and feedback on messaging that resonates with students.</li>
+                            <li>Collaborate with the Campus Recreation marketing team on branded campaigns that increase awareness and participation across campus.</li>
+                            <li>Help drive measurable traffic to events by promoting sign-ups and answering questions from <strong>thousands of students</strong> each semester at outreach tables and pop-ups.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Skills Section -->
+<section>
+    <h2 class="section-title">Skills & Expertise</h2>
+    <p class="section-subtitle">Technical and professional competencies</p>
+    
+    <div class="skills-grid">
+
+        <!-- Financial Analysis -->
+        <div class="skill-category">
+            <h3><span class="skill-icon">📊</span> Financial Analysis</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">DCF Modeling</span>
+                <span class="skill-tag">Equity Valuation</span>
+                <span class="skill-tag">Financial Statements</span>
+                <span class="skill-tag">Portfolio Analysis</span>
+                <span class="skill-tag">Risk Management</span>
+                <span class="skill-tag">Investment Research</span>
+                <span class="skill-tag">Forecasting</span>
+                <span class="skill-tag">Investment Strategy</span>
+                <span class="skill-tag">Risk Assessment</span>
+                <span class="skill-tag">Quantitative Finance</span>
+                <span class="skill-tag">ROI Analysis</span>
+                <span class="skill-tag">Value Chain Analysis</span>
+            </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="skill-category">
+            <h3><span class="skill-icon">💻</span> Data & Analytics</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">R</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">Excel/VBA</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Data Cleaning</span>
+                <span class="skill-tag">Data Visualization</span>
+                <span class="skill-tag">Model Evaluation</span>
+                <span class="skill-tag">Business Data Mining</span>
+                <span class="skill-tag">Supply Chain Planning</span>
+                <span class="skill-tag">Operations Management</span>
+                <span class="skill-tag">Database Technology</span>
+                <span class="skill-tag">LightGBM</span>
+                <span class="skill-tag">XGBoost</span>
+                <span class="skill-tag">Statistical Analysis</span>
+            </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div class="skill-category">
+            <h3><span class="skill-icon">🛠️</span> Tools & Platforms</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Bloomberg Terminal</span>
+                <span class="skill-tag">Tableau</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">Jupyter</span>
+                <span class="skill-tag">Git/GitHub</span>
+                <span class="skill-tag">VS Code</span>
+                <span class="skill-tag">Google Colab</span>
+                <span class="skill-tag">SAP GTS</span>
+                <span class="skill-tag">AWS Academy Tools</span>
+                <span class="skill-tag">Advanced Excel</span>
+            </div>
+        </div>
+
+        <!-- AI / Automation -->
+        <div class="skill-category">
+            <h3><span class="skill-icon">🤖</span> AI & Automation</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">GPT Agents</span>
+                <span class="skill-tag">Automation</span>
+                <span class="skill-tag">LLM Modeling</span>
+                <span class="skill-tag">AI Ethics</span>
+                <span class="skill-tag">NLP</span>
+                <span class="skill-tag">Workflow Automation</span>
+                <span class="skill-tag">API Integration</span>
+                <span class="skill-tag">Model Deployment</span>
+            </div>
+        </div>
+
+        <!-- Professional Skills -->
+        <div class="skill-category">
+            <h3><span class="skill-icon">🤝</span> Professional Skills</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Communication</span>
+                <span class="skill-tag">Team Management</span>
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Presentation</span>
+                <span class="skill-tag">Critical Thinking</span>
+                <span class="skill-tag">Cross-Functional Collaboration</span>
+                <span class="skill-tag">Client Interaction</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+                <!-- Education Section -->
+        <section>
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Academic background and certifications</p>
+            
+            <!-- Degree + Honors -->
+            <div class="education-section">
+                <div class="education-item">
+                    <div class="education-degree">Bachelor of Science</div>
+                    <div class="education-school">University of Illinois Chicago – Chicago, IL</div>
+                    <div class="education-details">
+                        Expected Graduation: May 2026 | GPA: 3.47 / 4.00<br>
+                        Double Major in Finance, Information &amp; Decision Sciences<br>
+                        Double Concentration in Business Analytics, Supply Chain &amp; Operations<br>
+                        <em>Dean's List:</em> Spring &amp; Fall 2023, Spring &amp; Fall 2024, Fall 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- CFA -->
+            <div class="education-section">
+                <div class="education-item">
+                    <div class="education-degree">CFA Level I Candidate (February 2025)</div>
+                    <div class="education-school">CFA Institute</div>
+                    <div class="education-details">
+                        Pursuing the Chartered Financial Analyst (CFA) designation with a focus on investment analysis and portfolio management.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="education-section">
+                <div class="education-item">
+                    <div class="education-degree">Certifications</div>
+                    <div class="education-details">
+                        <ul style="margin-top:0.75rem; padding-left:1.25rem;">
+                            <li><strong>Discovering the Basics of SAP Global Trade Services</strong> – Record of Achievement (SAP Learning / Credly)</li>
+                            <li><strong>AWS Academy Graduate – AWS Academy Data Engineering</strong> – 40-hour course (AWS Academy)</li>
+                            <li><strong>Financial Modeling Foundations</strong> – LinkedIn Learning (NASBA CPE)</li>
+                            <li><strong>Business Analysis Foundations</strong> – LinkedIn Learning (NASBA, IIBA, PMI)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="mailto:williamtanna280204@gmail.com">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+            </div>
+            <p>© 2025 William Tanna</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Tanna — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #111111;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --gold-dark: #b8960c;
+            --text: #e5e5e5;
+            --text-muted: #9a9a9a;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Page Transition */
+        .page-transition {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--black);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .page-transition.active { opacity: 1; pointer-events: all; }
+        .transition-content { text-align: center; }
+        .tiger-runner { font-size: 4rem; color: var(--gold); }
+        .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem; font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        .logo:hover { color: var(--gold-light); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .ai-nav-link {
+            color: var(--gold) !important;
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem;
+            border-radius: 2px;
+        }
+        .menu-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+            background: var(--black);
+            padding: 6rem 2rem 5rem;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+
+        .profile-img {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            object-fit: cover;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .profile-img:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem; font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            color: var(--text);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+        }
+        .hero .subtitle {
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero .tagline {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--border);
+        }
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+        .btn-ai {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--border);
+        }
+        .btn-ai:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .quick-link-card {
+            transition: all 0.3s ease;
+            padding: 1.5rem 1rem;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+        }
+        .quick-link-card:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-4px);
+        }
+        .quick-link-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .quick-link-title { font-size: 0.8rem; letter-spacing: 0.05em; }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Transformation Section */
+        .transformation-section {
+            padding: 5rem 2rem;
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+        }
+        .transformation-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .transformation-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        .transformation-section p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .transformation-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .transformation-stat {
+            transition: all 0.3s ease;
+            padding: 2rem 1.5rem;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+        }
+        .transformation-stat:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+        }
+        .transformation-stat .number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .transformation-stat .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+        .instagram-cta {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.08em;
+            transition: all 0.25s;
+        }
+        .instagram-cta:hover { background: rgba(212, 175, 55, 0.1); }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 2rem;
+            background: var(--black);
+        }
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .stat-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+        }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+        .social-links a:hover { color: var(--gold); }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px; left: 0; right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .quick-links { grid-template-columns: 1fr 1fr; }
+            .transformation-stats { grid-template-columns: 1fr; }
+            .stats-container { grid-template-columns: 1fr 1fr; }
+            .cta-buttons { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .quick-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition">
+        <div class="transition-content">
+            <div class="tiger-runner">🐅</div>
+            <div class="loading-text">Loading</div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="INDEX.html" class="logo">WT</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="INDEX.html" class="active" onclick="navigateWithAnimation(event, 'INDEX.html')">Home</a></li>
+                <li><a href="about.html" onclick="navigateWithAnimation(event, 'about.html')">About</a></li>
+                <li><a href="Resume.html" onclick="navigateWithAnimation(event, 'Resume.html')">Resume</a></li>
+                <li><a href="Projects.html" onclick="navigateWithAnimation(event, 'Projects.html')">Projects</a></li>
+                <li><a href="courses.html" onclick="navigateWithAnimation(event, 'courses.html')">Courses</a></li>
+                <li><a href="goals.html" onclick="navigateWithAnimation(event, 'goals.html')">Goals</a></li>
+                <li><a href="chat.html" onclick="navigateWithAnimation(event, 'chat.html')" class="ai-nav-link">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="images/profile.png" alt="William Tanna" class="profile-img" onerror="this.src='https://via.placeholder.com/200?text=WT';this.onerror=null;">
+            <h1>William Tanna</h1>
+            <p class="subtitle">📊 Finance & Information Systems</p>
+            <p class="tagline">CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
+            <div class="cta-buttons">
+                <a href="about.html" class="btn btn-primary" onclick="navigateWithAnimation(event, 'about.html')">About Me</a>
+                <a href="chat.html" class="btn btn-ai" onclick="navigateWithAnimation(event, 'chat.html')">AI Chat</a>
+                <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Contact</a>
+            </div>
+            <div class="quick-links">
+                <a href="about.html" class="quick-link-card" onclick="navigateWithAnimation(event, 'about.html')">
+                    <div class="quick-link-icon">👤</div>
+                    <div class="quick-link-title">About</div>
+                </a>
+                <a href="Resume.html" class="quick-link-card" onclick="navigateWithAnimation(event, 'Resume.html')">
+                    <div class="quick-link-icon">📄</div>
+                    <div class="quick-link-title">Resume</div>
+                </a>
+                <a href="Projects.html" class="quick-link-card" onclick="navigateWithAnimation(event, 'Projects.html')">
+                    <div class="quick-link-icon">💼</div>
+                    <div class="quick-link-title">Projects</div>
+                </a>
+                <a href="goals.html" class="quick-link-card" onclick="navigateWithAnimation(event, 'goals.html')">
+                    <div class="quick-link-icon">🎯</div>
+                    <div class="quick-link-title">Goals</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="transformation-section animate-on-scroll">
+        <div class="transformation-inner">
+            <h2>🔥 87-Day Transformation Challenge</h2>
+            <p>Currently documenting my fitness and personal growth journey. Building an audience through consistency—no paid marketing, just authentic content and discipline.</p>
+            <div class="transformation-stats">
+                <div class="transformation-stat">
+                    <div class="number">0 → 85</div>
+                    <div class="label">👥 Followers in 14 days</div>
+                </div>
+                <div class="transformation-stat">
+                    <div class="number">23K</div>
+                    <div class="label">📺 Video views to date</div>
+                </div>
+                <div class="transformation-stat">
+                    <div class="number">87</div>
+                    <div class="label">📅 Days of transformation</div>
+                </div>
+            </div>
+            <a href="https://instagram.com/williamtannaa" target="_blank" class="instagram-cta">📸 Follow on Instagram</a>
+        </div>
+    </section>
+
+    <section class="stats animate-on-scroll">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">3.47</div>
+                <div class="stat-label">📚 Current GPA</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$1.5M</div>
+                <div class="stat-label">📊 Portfolio Analysis Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$150K</div>
+                <div class="stat-label">💼 Student Investment Fund</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">📈 Client Portfolios Analyzed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">👥 Team Members Led</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" title="LinkedIn">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank" title="Instagram">Instagram</a>
+                <a href="mailto:wtanna2@uic.edu" title="Email">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank" title="GitHub">GitHub</a>
+            </div>
+            <p>© 2025 William Tanna</p>
+        </div>
+    </footer>
+
+    <script>
+        function navigateWithAnimation(event, url) {
+            event.preventDefault();
+            document.getElementById('pageTransition').classList.add('active');
+            setTimeout(() => { window.location.href = url; }, 400);
+        }
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        // Scroll-triggered animations
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('nav');
+            const links = document.getElementById('navLinks');
+            if (!nav.contains(e.target) && links.classList.contains('active')) {
+                links.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Goals — William Tanna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #111111;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --gold-dark: #b8960c;
+            --text: #e5e5e5;
+            --text-muted: #9a9a9a;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--black);
+        }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem; font-weight: 600;
+            color: var(--gold); text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .menu-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        }
+        .page-header {
+            margin-top: 60px;
+            background: var(--black-soft);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Vision Statement */
+        .vision-statement {
+            background: var(--black-card);
+            padding: 4rem 3rem;
+            border: 1px solid var(--border);
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .vision-statement h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .vision-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Timeline Goals */
+        .timeline-section {
+            margin-bottom: 5rem;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-header h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .timeline-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-container {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-period {
+            margin-bottom: 3rem;
+        }
+
+        .period-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gold);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            margin-left: -1rem;
+        }
+
+        .goals-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Goal Cards */
+        .goal-card {
+            background: var(--black-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--gold);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .goal-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.15);
+        }
+
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            left: -3.75rem;
+            top: 2.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--black-card);
+            border: 5px solid var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px white;
+        }
+
+        .goal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .goal-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .goal-content {
+            flex: 1;
+        }
+
+        .goal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .goal-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .goal-steps {
+            background: var(--black-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .goal-steps h4 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .goal-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .goal-steps li {
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .goal-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Long-term Vision */
+        .long-term-vision {
+            background: linear-gradient(135deg, var(--black) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .long-term-vision h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .vision-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .vision-item-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .vision-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .vision-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .vision-statement,
+            .long-term-vision {
+                padding: 3rem 2rem;
+            }
+
+            .vision-statement h2,
+            .long-term-vision h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-container {
+                padding-left: 2rem;
+            }
+
+            .goal-card::before {
+                left: -2.75rem;
+            }
+
+            .goal-header {
+                flex-direction: column;
+            }
+
+            .goal-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="INDEX.html" class="logo">WT</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="INDEX.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="goals.html" class="active">Goals</a></li>
+                <li><a href="chat.html">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>🎯 Future Goals</h1>
+        <p>A roadmap for my career in finance, technology, and investment management</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Vision Statement -->
+        <div class="vision-statement">
+            <h2>✨ My Vision</h2>
+            <p>To become a leading investment professional who leverages cutting-edge data science and technology to create innovative financial solutions. I aim to bridge the gap between traditional finance and modern technology, making sophisticated investment strategies accessible while maintaining the highest ethical standards and driving sustainable value creation.</p>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline-section">
+            <div class="timeline-header">
+                <h2>🗺️ Career Roadmap</h2>
+                <p>Strategic goals organized by timeline and priority</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Short Term (0-2 years) -->
+                <div class="timeline-period">
+                    <span class="period-label">📅 Short Term (2025-2026)</span>
+                    <div class="goals-grid">
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🎓</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Complete CFA Level I</h3>
+                                    <p class="goal-description">Pass the CFA Level I exam in 2025 to establish a strong foundation in investment analysis and ethical practices. This certification will validate my knowledge in portfolio management, equity analysis, and financial reporting.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Complete 300+ hours of structured study using Kaplan Schweser materials</li>
+                                    <li>Join CFA study group for peer learning and accountability</li>
+                                    <li>Take 6+ full-length mock exams before test date</li>
+                                    <li>Focus on Ethics, Fixed Income, and Equity Investments sections</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🎯</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Graduate with Honors</h3>
+                                    <p class="goal-description">Complete my Bachelor's degree in Finance and Information Systems with a strong GPA, demonstrating academic excellence and mastery of both financial theory and technical skills.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Maintain GPA above 3.7 in remaining semesters</li>
+                                    <li>Complete capstone project combining finance and data science</li>
+                                    <li>Pursue additional certifications in Python and SQL</li>
+                                    <li>Build strong relationships with professors for recommendations</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">💼</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Secure Full-Time Analyst Position</h3>
+                                    <p class="goal-description">Land a full-time role at a top investment bank, asset management firm, or financial technology company focused on equity research or quantitative analysis.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Network with 50+ finance professionals through LinkedIn and events</li>
+                                    <li>Apply to 100+ positions at target firms by December 2025</li>
+                                    <li>Prepare for technical interviews (modeling, valuation, coding)</li>
+                                    <li>Leverage UIC Career Services and alumni network</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Term (2-5 years) -->
+                <div class="timeline-period">
+                    <span class="period-label">📅 Medium Term (2027-2030)</span>
+                    <div class="goals-grid">
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">📚</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Earn CFA Charter</h3>
+                                    <p class="goal-description">Complete all three levels of the CFA program and earn the CFA designation, establishing myself as a highly credentialed investment professional with expertise in portfolio management and financial analysis.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Pass CFA Level II exam (2026-2027)</li>
+                                    <li>Pass CFA Level III exam (2027-2028)</li>
+                                    <li>Complete 4 years of qualified work experience</li>
+                                    <li>Join CFA Society Chicago for networking and professional development</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">📊</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Become Senior Analyst</h3>
+                                    <p class="goal-description">Progress to a senior analyst role with increased responsibility in portfolio management, client relationships, and investment strategy. Lead research initiatives and mentor junior analysts.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Develop expertise in 2-3 specific sectors (tech, healthcare, financials)</li>
+                                    <li>Build track record of successful investment recommendations</li>
+                                    <li>Present research to portfolio managers and investment committees</li>
+                                    <li>Take on leadership roles in team projects and initiatives</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🌐</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Gain International Experience</h3>
+                                    <p class="goal-description">Work in a major financial hub abroad (New York, London, or Singapore) to gain exposure to global markets, cross-border investment strategies, and diverse financial systems.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Seek internal transfer opportunities within firm</li>
+                                    <li>Apply for international roles at global investment firms</li>
+                                    <li>Study foreign markets and international finance</li>
+                                    <li>Build network with international finance professionals</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🎓</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Pursue Advanced Degree (Optional)</h3>
+                                    <p class="goal-description">Consider an MBA or Master's in Financial Engineering to deepen quantitative skills and expand professional network, particularly if transitioning to quantitative finance or fintech.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Research top programs (Booth, Stern, MIT, Columbia)</li>
+                                    <li>Prepare for GMAT/GRE if pursuing MBA</li>
+                                    <li>Evaluate ROI and career impact of additional education</li>
+                                    <li>Explore company sponsorship opportunities</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Long Term (5-10 years) -->
+                <div class="timeline-period">
+                    <span class="period-label">📅 Long Term (2030-2035)</span>
+                    <div class="goals-grid">
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">👔</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Portfolio Manager Role</h3>
+                                    <p class="goal-description">Advance to a portfolio manager position with full discretion over investment decisions, managing a multi-million or billion dollar portfolio with strong performance track record.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Build 7-10 year track record of outperformance</li>
+                                    <li>Develop proprietary investment strategies and frameworks</li>
+                                    <li>Cultivate relationships with institutional clients</li>
+                                    <li>Demonstrate risk management and alpha generation skills</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🚀</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Launch FinTech Venture</h3>
+                                    <p class="goal-description">Co-found or launch a financial technology platform that democratizes sophisticated investment analysis tools, making institutional-quality research accessible to retail investors through AI and automation.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Identify gaps in retail investment tools and services</li>
+                                    <li>Build technical team or co-founder with engineering expertise</li>
+                                    <li>Develop MVP and secure seed funding</li>
+                                    <li>Navigate regulatory requirements and compliance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <div class="goal-icon">🤝</div>
+                                <div class="goal-content">
+                                    <h3 class="goal-title">Mentorship & Teaching</h3>
+                                    <p class="goal-description">Give back to the finance community by mentoring aspiring professionals, teaching investment courses, and speaking at universities to help the next generation succeed in finance and technology.</p>
+                                </div>
+                            </div>
+                            <div class="goal-steps">
+                                <h4>Action Steps:</h4>
+                                <ul>
+                                    <li>Mentor students through UIC alumni network</li>
+                                    <li>Speak at finance conferences and university career panels</li>
+                                    <li>Teach adjunct courses on investment analysis or fintech</li>
+                                    <li>Create online content (blog, YouTube) on finance education</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Long-term Vision -->
+        <div class="long-term-vision">
+            <h2>Ultimate Vision: Where I See Myself in 10+ Years</h2>
+            <div class="vision-grid">
+                <div class="vision-item">
+                    <div class="vision-item-icon">🏆</div>
+                    <h3>Industry Leader</h3>
+                    <p>Recognized expert in quantitative finance and fintech innovation with a proven track record of investment performance</p>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-item-icon">💡</div>
+                    <h3>Technology Pioneer</h3>
+                    <p>Founder of successful fintech platform that bridges gap between institutional and retail investing</p>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-item-icon">🌍</div>
+                    <h3>Global Impact</h3>
+                    <p>Creating positive social impact through financial education and accessible investment tools worldwide</p>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-item-icon">👨‍🏫</div>
+                    <h3>Educator & Mentor</h3>
+                    <p>Shaping future finance professionals through mentorship, teaching, and thought leadership</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="mailto:wtanna2@uic.edu">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+            </div>
+            <p>© 2025 William Tanna</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

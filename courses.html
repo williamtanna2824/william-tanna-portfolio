@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses — William Tanna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --black-soft: #141414;
+            --black-card: #111111;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --text: #e5e5e5;
+            --text-muted: #9a9a9a;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--black);
+        }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem; font-weight: 600;
+            color: var(--gold); text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .menu-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        }
+        .page-header {
+            margin-top: 60px;
+            background: var(--black-soft);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .page-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: var(--black-card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-left-width: 6px;
+        }
+
+        .course-code {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .course-description {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .course-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .topic-tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            background: var(--black-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="INDEX.html" class="logo">WT</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="INDEX.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="goals.html">Goals</a></li>
+                <li><a href="chat.html">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>📚 Courses Taken</h1>
+        <p>Comprehensive academic journey through finance, data science, and information systems</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">📖 Courses Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Major Disciplines</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">90+</div>
+                <div class="stat-label">⏱️ Credit Hours</div>
+            </div>
+        </div>
+
+        <!-- Finance Courses -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">💰</span>
+                <h2 class="category-title">Finance Courses</h2>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">FIN 301</div>
+                    <div class="course-name">Corporate Finance</div>
+                    <div class="course-description">Financial decision making, capital budgeting, cost of capital, and corporate valuation techniques.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">NPV</span>
+                        <span class="topic-tag">IRR</span>
+                        <span class="topic-tag">WACC</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">FIN 421</div>
+                    <div class="course-name">Investment Analysis</div>
+                    <div class="course-description">Security analysis, portfolio management, asset allocation, and modern portfolio theory.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Equity Analysis</span>
+                        <span class="topic-tag">Portfolio Theory</span>
+                        <span class="topic-tag">Risk Management</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">FIN 450</div>
+                    <div class="course-name">Financial Modeling</div>
+                    <div class="course-description">Advanced Excel techniques for building financial models, DCF valuation, and scenario analysis.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">DCF Models</span>
+                        <span class="topic-tag">Excel</span>
+                        <span class="topic-tag">Valuation</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">FIN 320</div>
+                    <div class="course-name">Financial Markets & Institutions</div>
+                    <div class="course-description">Structure and operation of financial markets, banking systems, and regulatory frameworks.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Capital Markets</span>
+                        <span class="topic-tag">Banking</span>
+                        <span class="topic-tag">Regulation</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">FIN 440</div>
+                    <div class="course-name">Derivatives & Risk Management</div>
+                    <div class="course-description">Options, futures, swaps, and hedging strategies for managing financial risk.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Options</span>
+                        <span class="topic-tag">Futures</span>
+                        <span class="topic-tag">Hedging</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Science & Analytics -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">📊</span>
+                <h2 class="category-title">Data Science & Analytics</h2>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">CS 218</div>
+                    <div class="course-name">Data + AI</div>
+                    <div class="course-description">Machine learning, data analysis, and artificial intelligence applications for real-world problems.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Machine Learning</span>
+                        <span class="topic-tag">Python</span>
+                        <span class="topic-tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">IDS 400</div>
+                    <div class="course-name">Business Analytics</div>
+                    <div class="course-description">Data-driven decision making, predictive analytics, and business intelligence tools.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Analytics</span>
+                        <span class="topic-tag">BI Tools</span>
+                        <span class="topic-tag">Prediction</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">IDS 355</div>
+                    <div class="course-name">Database Management Systems</div>
+                    <div class="course-description">Database design, SQL programming, data modeling, and database administration.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">SQL</span>
+                        <span class="topic-tag">Database Design</span>
+                        <span class="topic-tag">Data Modeling</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">STAT 381</div>
+                    <div class="course-name">Applied Statistical Methods</div>
+                    <div class="course-description">Statistical inference, hypothesis testing, regression analysis, and experimental design.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Statistics</span>
+                        <span class="topic-tag">Regression</span>
+                        <span class="topic-tag">Testing</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CS 341</div>
+                    <div class="course-name">Programming Language Design</div>
+                    <div class="course-description">Programming paradigms, language design principles, and implementation techniques.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Programming</span>
+                        <span class="topic-tag">Languages</span>
+                        <span class="topic-tag">Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Economics & Quantitative Methods -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">📈</span>
+                <h2 class="category-title">Economics & Quantitative Methods</h2>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">ECON 210</div>
+                    <div class="course-name">Econometrics</div>
+                    <div class="course-description">Statistical methods for economic analysis, time series analysis, and forecasting models.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Regression</span>
+                        <span class="topic-tag">Time Series</span>
+                        <span class="topic-tag">Forecasting</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ECON 120</div>
+                    <div class="course-name">Principles of Microeconomics</div>
+                    <div class="course-description">Supply and demand, market structures, consumer behavior, and production theory.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Markets</span>
+                        <span class="topic-tag">Supply & Demand</span>
+                        <span class="topic-tag">Competition</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ECON 121</div>
+                    <div class="course-name">Principles of Macroeconomics</div>
+                    <div class="course-description">National income, inflation, unemployment, monetary policy, and fiscal policy.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">GDP</span>
+                        <span class="topic-tag">Monetary Policy</span>
+                        <span class="topic-tag">Growth</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MATH 180</div>
+                    <div class="course-name">Calculus I</div>
+                    <div class="course-description">Limits, derivatives, integration, and applications to business and economics.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Derivatives</span>
+                        <span class="topic-tag">Integration</span>
+                        <span class="topic-tag">Applications</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MATH 181</div>
+                    <div class="course-name">Calculus II</div>
+                    <div class="course-description">Advanced integration techniques, sequences, series, and differential equations.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Series</span>
+                        <span class="topic-tag">Sequences</span>
+                        <span class="topic-tag">Differential Equations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Systems -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">💻</span>
+                <h2 class="category-title">Information Systems</h2>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">IDS 270</div>
+                    <div class="course-name">Business Statistics</div>
+                    <div class="course-description">Descriptive statistics, probability distributions, sampling, and statistical inference for business.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Statistics</span>
+                        <span class="topic-tag">Probability</span>
+                        <span class="topic-tag">Inference</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">IDS 357</div>
+                    <div class="course-name">IT Infrastructure</div>
+                    <div class="course-description">Network architecture, cloud computing, cybersecurity, and enterprise systems.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Networks</span>
+                        <span class="topic-tag">Cloud</span>
+                        <span class="topic-tag">Security</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">IDS 445</div>
+                    <div class="course-name">Data Mining</div>
+                    <div class="course-description">Pattern recognition, classification algorithms, clustering, and association rules.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Mining</span>
+                        <span class="topic-tag">Classification</span>
+                        <span class="topic-tag">Clustering</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CS 111</div>
+                    <div class="course-name">Program Design I</div>
+                    <div class="course-description">Fundamentals of programming, algorithms, data structures, and problem solving.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Programming</span>
+                        <span class="topic-tag">Algorithms</span>
+                        <span class="topic-tag">Data Structures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Core -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🏢</span>
+                <h2 class="category-title">Business Core</h2>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">ACTG 210</div>
+                    <div class="course-name">Financial Accounting</div>
+                    <div class="course-description">Financial statements, accounting principles, and financial reporting standards.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">GAAP</span>
+                        <span class="topic-tag">Financial Statements</span>
+                        <span class="topic-tag">Reporting</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ACTG 211</div>
+                    <div class="course-name">Managerial Accounting</div>
+                    <div class="course-description">Cost accounting, budgeting, performance evaluation, and internal decision making.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Cost Accounting</span>
+                        <span class="topic-tag">Budgeting</span>
+                        <span class="topic-tag">Performance</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MGMT 340</div>
+                    <div class="course-name">Organizational Behavior</div>
+                    <div class="course-description">Human behavior in organizations, motivation, leadership, and team dynamics.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Leadership</span>
+                        <span class="topic-tag">Teams</span>
+                        <span class="topic-tag">Motivation</span>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MKTG 360</div>
+                    <div class="course-name">Marketing Management</div>
+                    <div class="course-description">Marketing strategy, consumer behavior, product development, and brand management.</div>
+                    <div class="course-topics">
+                        <span class="topic-tag">Strategy</span>
+                        <span class="topic-tag">Branding</span>
+                        <span class="topic-tag">Consumer Behavior</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="mailto:wtanna2@uic.edu">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+            </div>
+            <p>© 2025 William Tanna</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
