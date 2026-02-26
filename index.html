@@ -107,16 +107,26 @@
         }
         .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
 
-        .profile-img {
+        .profile-img,
+        .profile-video-wrap {
             width: 160px; height: 160px;
             border-radius: 50%;
             border: 2px solid var(--border);
-            object-fit: cover;
             margin-bottom: 2.5rem;
             animation: fadeInUp 0.8s ease-out;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .profile-img:hover {
+        .profile-img { object-fit: cover; }
+        .profile-video-wrap {
+            overflow: hidden;
+            display: inline-block;
+        }
+        .profile-video-wrap video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .profile-img:hover,
+        .profile-video-wrap:hover {
             border-color: var(--gold);
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
         }
@@ -405,7 +415,13 @@
 
     <section class="hero">
         <div class="hero-content">
-            <img src="images/profile.png" alt="William Tanna" class="profile-img" onerror="this.src='https://via.placeholder.com/200?text=WT';this.onerror=null;">
+            <div class="profile-video-wrap">
+                <video autoplay loop muted playsinline poster="images/profile.png" aria-label="William Tanna">
+                    <source src="images/profile.mov" type="video/quicktime">
+                    <source src="images/profile.mp4" type="video/mp4">
+                    <img src="images/profile.png" alt="William Tanna" class="profile-img">
+                </video>
+            </div>
             <h1>William Tanna</h1>
             <p class="subtitle">📊 Finance & Information Systems</p>
             <p class="tagline">CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
