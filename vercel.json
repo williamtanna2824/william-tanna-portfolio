@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/chat", "destination": "/chat.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/resume", "destination": "/Resume.html" },
+    { "source": "/projects", "destination": "/Projects.html" },
+    { "source": "/courses", "destination": "/courses.html" },
+    { "source": "/goals", "destination": "/goals.html" }
+  ]
+}
