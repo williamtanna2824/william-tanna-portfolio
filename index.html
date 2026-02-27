@@ -64,8 +64,8 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: #0a0a0a;
-            color: white;
+            background: var(--black);
+            color: var(--gold);
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
@@ -75,7 +75,8 @@
             transition: transform 0.3s, background 0.3s;
         }
         .nav-plus:hover {
-            background: #333;
+            background: var(--gold);
+            color: var(--black);
             transform: rotate(90deg);
         }
         .nav-links {
@@ -129,7 +130,7 @@
             filter: grayscale(100%);
         }
         .hero-text {
-            background: #ffffff;
+            background: var(--black);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -139,14 +140,14 @@
             font-family: 'DM Sans', -apple-system, sans-serif;
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
-            color: #0a0a0a;
+            color: var(--gold);
             letter-spacing: -0.03em;
             line-height: 1.05;
             margin-bottom: 1.5rem;
         }
         .hero-tagline {
             font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-            color: #555;
+            color: var(--text-muted);
             line-height: 1.6;
             max-width: 420px;
         }
@@ -158,29 +159,29 @@
             flex-wrap: wrap;
         }
         .cta-buttons .btn-primary {
-            background: #0a0a0a;
-            color: white;
-            border-color: #0a0a0a;
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
         }
         .cta-buttons .btn-primary:hover {
-            background: #333;
-            border-color: #333;
+            background: var(--gold-light);
+            border-color: var(--gold-light);
         }
         .cta-buttons .btn-secondary {
-            color: #0a0a0a;
-            border-color: #0a0a0a;
+            color: var(--gold);
+            border-color: var(--gold);
         }
         .cta-buttons .btn-secondary:hover {
-            background: #0a0a0a;
-            color: white;
+            background: var(--gold);
+            color: var(--black);
         }
         .cta-buttons .btn-ai {
-            color: #0a0a0a;
-            border-color: #0a0a0a;
+            color: var(--gold);
+            border-color: var(--gold);
         }
         .cta-buttons .btn-ai:hover {
-            background: #0a0a0a;
-            color: white;
+            background: var(--gold);
+            color: var(--black);
         }
         .btn {
             padding: 0.9rem 2rem;
@@ -247,13 +248,13 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2rem, 4vw, 4rem);
             font-weight: 600;
-            color: var(--text);
+            color: var(--gold);
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
         .services-section .subtitle {
             font-size: 1.1rem;
-            color: var(--text-muted);
+            color: var(--text);
             margin-bottom: 3rem;
             max-width: 600px;
             line-height: 1.7;
@@ -283,7 +284,7 @@
         }
         .service-card p {
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: var(--text);
             line-height: 1.6;
         }
 
@@ -393,7 +394,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
-            color: var(--text);
+            color: var(--gold);
             margin-bottom: 1rem;
         }
         .footer-cta p {
@@ -459,7 +460,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
-            color: var(--text);
+            color: var(--gold);
             margin-bottom: 0.5rem;
         }
         .chat-section .chat-subtitle {
