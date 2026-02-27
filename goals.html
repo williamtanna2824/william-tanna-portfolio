@@ -26,38 +26,82 @@
             line-height: 1.7;
             color: var(--text);
             background: var(--black);
+            overflow-x: hidden;
         }
+        .page-transition {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--black);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .page-transition.active { opacity: 1; pointer-events: all; }
+        .transition-content { text-align: center; }
+        .tiger-runner { font-size: 4rem; color: var(--gold); }
+        .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
         nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10, 10, 10, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; right: 0;
             z-index: 1000;
+            padding: 1.5rem 2rem;
         }
         .nav-container {
-            max-width: 1100px; margin: 0 auto;
-            padding: 1.25rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
         }
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem; font-weight: 600;
-            color: var(--gold); text-decoration: none;
+        .logo { display: none; }
+        .nav-plus {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background 0.3s;
         }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-plus:hover {
+            background: #333;
+            transform: rotate(90deg);
+        }
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 0; right: 0; bottom: 0;
+            width: 280px;
+            background: #0a0a0a;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
+            gap: 1.5rem;
+            list-style: none;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+        }
+        .nav-links.active { display: flex; }
         .nav-links a {
-            color: var(--text-muted);
+            color: #e5e5e5;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-        .menu-toggle {
-            display: none;
-            background: none; border: none;
-            color: var(--gold); font-size: 1.5rem; cursor: pointer;
+        .nav-links a:hover { color: var(--gold); }
+        .menu-toggle { display: none; }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
         .page-header {
             margin-top: 60px;
             background: var(--black-soft);
@@ -159,7 +203,7 @@
             display: inline-block;
             padding: 0.5rem 1.5rem;
             background: var(--gold);
-            color: white;
+            color: var(--black);
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.95rem;
@@ -220,7 +264,7 @@
         .goal-title {
             font-size: 1.75rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--text);
             margin-bottom: 0.75rem;
             line-height: 1.3;
         }
@@ -268,7 +312,7 @@
         /* Long-term Vision */
         .long-term-vision {
             background: linear-gradient(135deg, var(--black) 0%, var(--gold-dark) 100%);
-            color: white;
+            color: var(--text);
             padding: 4rem 3rem;
             border-radius: 20px;
             text-align: center;
@@ -314,8 +358,8 @@
 
         /* Footer */
         footer {
-            background: var(--black);
-            color: white;
+            background: var(--black-soft);
+            color: var(--text);
             padding: 3rem 2rem;
             text-align: center;
             margin-top: 4rem;
@@ -334,8 +378,8 @@
         }
 
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             transition: all 0.3s;
             text-decoration: none;
         }
@@ -344,6 +388,7 @@
             color: var(--gold);
             transform: translateY(-3px);
         }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -400,25 +445,30 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <div class="page-transition" id="pageTransition">
+        <div class="transition-content">
+            <div class="tiger-runner">🐅</div>
+            <div class="loading-text">Loading</div>
+        </div>
+    </div>
+
     <nav>
         <div class="nav-container">
-            <a href="/" class="logo">WT</a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button class="nav-plus" onclick="toggleMenu()" aria-label="Menu">+</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/resume">Resume</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/goals" class="active">Goals</a></li>
-                <li><a href="/chat">AI Chat</a></li>
+                <li><a href="/" onclick="navigateWithAnimation(event, '/')">Home</a></li>
+                <li><a href="/about" onclick="navigateWithAnimation(event, '/about')">About</a></li>
+                <li><a href="/resume" onclick="navigateWithAnimation(event, '/resume')">Resume</a></li>
+                <li><a href="/projects" onclick="navigateWithAnimation(event, '/projects')">Projects</a></li>
+                <li><a href="/courses" onclick="navigateWithAnimation(event, '/courses')">Courses</a></li>
+                <li><a href="/goals" class="active" onclick="navigateWithAnimation(event, '/goals')">Goals</a></li>
+                <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section class="page-header animate-on-scroll">
         <h1>🎯 Future Goals</h1>
         <p>A roadmap for my career in finance, technology, and investment management</p>
     </section>
@@ -426,13 +476,13 @@
     <!-- Main Content -->
     <div class="container">
         <!-- Vision Statement -->
-        <div class="vision-statement">
+        <div class="vision-statement animate-on-scroll">
             <h2>✨ My Vision</h2>
             <p>Becoming a CFA charterholder within 2–3 years, completing my bachelor's degree, and building a career in credit, investment banking, or asset management—with a focus on working in Chicago.</p>
         </div>
 
         <!-- Timeline Section -->
-        <div class="timeline-section">
+        <div class="timeline-section animate-on-scroll">
             <div class="timeline-header">
                 <h2>🗺️ Career Roadmap</h2>
                 <p>Strategic goals organized by timeline</p>
@@ -504,7 +554,7 @@
         </div>
 
         <!-- Long-term Vision -->
-        <div class="long-term-vision">
+        <div class="long-term-vision animate-on-scroll">
             <h2>Where I'm Headed</h2>
             <div class="vision-grid">
                 <div class="vision-item">
@@ -540,15 +590,24 @@
     </footer>
 
     <script>
+        function navigateWithAnimation(event, url) {
+            event.preventDefault();
+            document.getElementById('pageTransition').classList.add('active');
+            setTimeout(() => { window.location.href = url; }, 400);
+        }
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
         document.addEventListener('click', function(event) {
             const nav = document.querySelector('nav');
             const navLinks = document.getElementById('navLinks');
-            
             if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
