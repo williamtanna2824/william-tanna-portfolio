@@ -45,128 +45,141 @@
         .tiger-runner { font-size: 4rem; color: var(--gold); }
         .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
 
-        /* Navigation */
+        /* Navigation - Jake style: minimal, + button top right */
         nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10, 10, 10, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; right: 0;
             z-index: 1000;
-            transition: background 0.3s;
+            padding: 1.5rem 2rem;
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto;
-            padding: 1.25rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
         }
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem; font-weight: 600;
-            color: var(--gold);
-            text-decoration: none;
-            letter-spacing: 0.05em;
-        }
-        .logo:hover { color: var(--gold-light); }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-        .ai-nav-link {
-            color: var(--gold) !important;
-            border: 1px solid var(--border);
-            padding: 0.4rem 0.9rem;
-            border-radius: 2px;
-        }
-        .menu-toggle {
             display: none;
-            background: none; border: none;
-            color: var(--gold); font-size: 1.5rem; cursor: pointer;
         }
-
-        /* Hero - Jake-style: large typography, prominent media */
-        .hero {
-            margin-top: 60px;
-            min-height: 100vh;
+        .nav-plus {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem 6rem;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s, background 0.3s;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
-            pointer-events: none;
+        .nav-plus:hover {
+            background: #333;
+            transform: rotate(90deg);
         }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 1000px;
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 0; right: 0; bottom: 0;
+            width: 280px;
+            background: #0a0a0a;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
+            gap: 1.5rem;
+            list-style: none;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.3);
         }
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .menu-toggle { display: none; }
 
-        /* Large profile photo/video - Jake style */
-        .profile-video-wrap {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
+        /* Hero - Jake style: SPLIT - large photo LEFT, name RIGHT on white */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 100vh;
+        }
+        .hero-photo {
+            position: relative;
             overflow: hidden;
-            margin: 0 auto 3rem;
-            border: 1px solid var(--border);
-            animation: heroReveal 1s ease-out both;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
-        .profile-video-wrap:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
-        }
-        .profile-video-wrap video,
-        .profile-video-wrap .profile-img {
-            width: 100%; height: 100%;
+        .hero-photo video,
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
-        .profile-img { display: block; }
-
-        /* Large name - Jake style */
+        .hero-photo img.profile-img {
+            display: block;
+        }
+        /* B&W filter like Jake's portrait - remove to show color */
+        .hero-photo video,
+        .hero-photo img {
+            filter: grayscale(100%);
+        }
+        .hero-text {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 4rem 4rem 3rem;
+        }
         .hero-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            color: #0a0a0a;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
-            animation: heroReveal 0.8s ease-out 0.2s both;
         }
         .hero-tagline {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            max-width: 560px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
-            animation: heroReveal 0.8s ease-out 0.35s both;
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: #555;
+            line-height: 1.6;
+            max-width: 420px;
         }
-        .hero-subtitle {
-            font-size: 0.9rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            animation: heroReveal 0.8s ease-out 0.2s both;
-        }
+        .hero-subtitle { display: none; }
         .cta-buttons {
-            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-            animation: heroReveal 0.8s ease-out 0.5s both;
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .cta-buttons .btn-primary {
+            background: #0a0a0a;
+            color: white;
+            border-color: #0a0a0a;
+        }
+        .cta-buttons .btn-primary:hover {
+            background: #333;
+            border-color: #333;
+        }
+        .cta-buttons .btn-secondary {
+            color: #0a0a0a;
+            border-color: #0a0a0a;
+        }
+        .cta-buttons .btn-secondary:hover {
+            background: #0a0a0a;
+            color: white;
+        }
+        .cta-buttons .btn-ai {
+            color: #0a0a0a;
+            border-color: #0a0a0a;
+        }
+        .cta-buttons .btn-ai:hover {
+            background: #0a0a0a;
+            color: white;
         }
         .btn {
             padding: 0.9rem 2rem;
@@ -219,65 +232,6 @@
         .animate-delay-2 { transition-delay: 0.2s; }
         .animate-delay-3 { transition-delay: 0.3s; }
         .animate-delay-4 { transition-delay: 0.4s; }
-
-        /* Testimonials - Jake style */
-        .testimonials-section {
-            padding: 6rem 2rem;
-            background: var(--black-soft);
-            border-top: 1px solid var(--border);
-        }
-        .testimonials-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .testimonials-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 3rem;
-            text-align: center;
-            letter-spacing: 0.05em;
-        }
-        .testimonials-scroll {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 1rem 0;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .testimonials-scroll::-webkit-scrollbar { display: none; }
-        .testimonial-card {
-            flex: 0 0 380px;
-            padding: 2rem;
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            scroll-snap-align: start;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .testimonial-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-4px);
-        }
-        .testimonial-card blockquote {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--gold);
-            font-size: 0.9rem;
-        }
-        .testimonial-role {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
 
         /* Services - Jake style "What I do" */
         .services-section {
@@ -469,6 +423,28 @@
         .social-links a:hover { color: var(--gold); }
         footer p { font-size: 0.8rem; color: var(--text-muted); }
 
+        /* Jake-style: dark footer band with logos */
+        .hero-footer-band {
+            background: #1a1a1a;
+            padding: 2rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-band-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem 3rem;
+        }
+        .footer-band-inner span {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -483,8 +459,9 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .profile-video-wrap { width: 180px; height: 180px; }
-            .testimonial-card { flex: 0 0 300px; }
             .cta-buttons { flex-direction: column; }
+            .footer-band-inner { gap: 1rem 1.5rem; }
+            .footer-band-inner span { font-size: 0.8rem; }
         }
         @media (max-width: 480px) {
             .profile-video-wrap { width: 150px; height: 150px; }
@@ -501,8 +478,7 @@
 
     <nav>
         <div class="nav-container">
-            <a href="/" class="logo">WT</a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button class="nav-plus" onclick="toggleMenu()" aria-label="Menu">+</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="/" class="active" onclick="navigateWithAnimation(event, '/')">Home</a></li>
                 <li><a href="/about" onclick="navigateWithAnimation(event, '/about')">About</a></li>
@@ -510,51 +486,39 @@
                 <li><a href="/projects" onclick="navigateWithAnimation(event, '/projects')">Projects</a></li>
                 <li><a href="/courses" onclick="navigateWithAnimation(event, '/courses')">Courses</a></li>
                 <li><a href="/goals" onclick="navigateWithAnimation(event, '/goals')">Goals</a></li>
-                <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')" class="ai-nav-link">AI Chat</a></li>
+                <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
-            <div class="profile-video-wrap">
-                <video autoplay loop muted playsinline poster="images/profile.png" aria-label="William Tanna">
-                    <source src="images/profile.mov" type="video/quicktime">
-                    <source src="images/profile.mp4" type="video/mp4">
-                    <img src="images/profile.png" alt="William Tanna" class="profile-img">
-                </video>
-            </div>
-            <p class="hero-subtitle">Finance & Information Systems</p>
+        <div class="hero-photo">
+            <video autoplay loop muted playsinline poster="images/profile.png" aria-label="William Tanna">
+                <source src="images/profile.mov" type="video/quicktime">
+                <source src="images/profile.mp4" type="video/mp4">
+                <img src="images/profile.png" alt="William Tanna" class="profile-img">
+            </video>
+        </div>
+        <div class="hero-text">
             <h1 class="hero-name">William Tanna</h1>
-            <p class="hero-tagline">CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
+            <p class="hero-tagline">Finance & Information Systems · CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
             <div class="cta-buttons">
-                <a href="/about" class="btn btn-primary" onclick="navigateWithAnimation(event, '/about')">About Me</a>
+                <a href="/about" class="btn btn-primary" onclick="navigateWithAnimation(event, '/about')">About</a>
+                <a href="/resume" class="btn btn-secondary" onclick="navigateWithAnimation(event, '/resume')">Resume</a>
                 <a href="/chat" class="btn btn-ai" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a>
                 <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Contact</a>
             </div>
         </div>
     </section>
 
-    <section class="testimonials-section animate-on-scroll">
-        <div class="testimonials-inner">
-            <h2>What people say</h2>
-            <div class="testimonials-scroll">
-                <div class="testimonial-card">
-                    <blockquote>"William delivered exceptional financial analysis and portfolio diagnostics. His work on our investor accounts demonstrated strong analytical rigor and attention to detail."</blockquote>
-                    <div class="testimonial-author">Mirae Asset Sharekhan</div>
-                    <div class="testimonial-role">Finance Internship Supervisor</div>
-                </div>
-                <div class="testimonial-card">
-                    <blockquote>"A true visionary who pushes boundaries with a systems mindset. William balances analytics with business impact—always stepping into the shoes of the end user."</blockquote>
-                    <div class="testimonial-author">UIC Project Evaluations</div>
-                    <div class="testimonial-role">Chicago Tech Circle Competition Winner</div>
-                </div>
-                <div class="testimonial-card">
-                    <blockquote>"William brought both vision and collaboration to the table—a world-class analyst with a team-first approach. His work on the ESG automation platform was exceptional."</blockquote>
-                    <div class="testimonial-author">FIN 294 Data + AI</div>
-                    <div class="testimonial-role">Course Project</div>
-                </div>
-            </div>
+    <!-- Jake-style: dark band with experience logos -->
+    <section class="hero-footer-band">
+        <div class="footer-band-inner">
+            <span>UIC</span>
+            <span>Mirae Asset Sharekhan</span>
+            <span>CFA Institute</span>
+            <span>Campus Recreation</span>
+            <span>Chicago Tech Circle</span>
         </div>
     </section>
 
