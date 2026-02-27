@@ -1,75 +1,82 @@
 WILLIAM CHETANKUMAR TANNA — KNOWLEDGE BASE (Portfolio Website)
 
+LAST UPDATED: February 2026 — Use this date when interpreting "Present" in experience dates.
+
 CONTACT
 - Name: William Chetankumar Tanna
 - Location: Chicago, IL 60607
 - Phone: (312)-686-4516
 - Email: williamtanna280204@gmail.com
-- University email: wtanna2@uic.edu
-- Education: University of Illinois Chicago (UIC)
-- Degree: B.S. Finance + Information & Decision Sciences (Business Analytics concentration) + Supply Chain & Operations
-- Graduation: Expected May 2026
-- CFA: CFA Level I Candidate
-- Links: LinkedIn (linkedin.com/in/williamtanna2824), Instagram (@Williamtannaa)
+- LinkedIn: linkedin.com/in/williamtanna2824
+- Website: williamtanna.com
+- Schedule a meeting: Google Calendar appointment schedule (for recruiters, hiring managers, or anyone who wants to talk) — link on website
 
-SUMMARY
-Aspiring finance and analytics professional and CFA Level I candidate with experience building automated web platforms and OpenAI-driven data systems delivering ~20-second processing, ~95% consistency, 18x faster execution, and 56x cost savings. Skilled in financial modeling, investment analysis, and analytics solutions that strengthen portfolio decisions, reporting, and ROI.
-
-EDUCATION HIGHLIGHTS
-- Current GPA: 3.47
+EDUCATION
+- University of Illinois Chicago, College of Business Administration | Aug 2022 – May 2026
+- Bachelor of Science: Finance, Information & Decision Sciences
+- Concentrations: Business Analytics, Supply Chain & Operations
 - Dean's List: Spring 2023, Fall 2023, Spring 2024, Fall 2024, Fall 2025
-
-SKILLS
-- Financial Analysis & Modeling: Financial Modeling, Equity Research, Risk Assessment, Forecasting, Portfolio Analysis, Quantitative Finance, FP&A
-- Data & AI Analytics: Data Mining, Data Cleaning, Machine Learning (LightGBM, XGBoost), Model Evaluation, GPT/LLM Systems, Automation
-- Tools: Bloomberg Terminal, R Studio, Excel (Advanced), Microsoft Access, SQL, Python, CRM Systems, Website Building, Tableau
 
 PROFESSIONAL EXPERIENCE
 
-1) Mirae AssetSharekhan — Finance Intern (Mumbai, India) | Jul 2024 – Sep 2024
+1) Mirae Asset Sharekhan — Finance Intern (Mumbai, India) | Jul 2024 – Sep 2024
 - Performed financial analysis and portfolio diagnostics on 20+ investor accounts worth INR 12 Cr ($1.5M) to support forecasting accuracy.
-- Presented equity and mutual fund investment ideas contributing to three new client acquisitions and stronger portfolio diversification.
+- Presented equity and mutual fund investment ideas, contributing to three new client acquisitions and stronger portfolio diversification.
 - Automated transaction tracking in Excel, improving reporting efficiency by 30% and enhancing data accuracy for financial statements.
 - Verified client KYC and risk profiles during CRM migration to ensure complete data integrity and compliance in reporting.
 
 2) Campus Recreation at UIC — Intramural Sports Referee Supervisor (Chicago, IL) | Nov 2023 – Present
-- Supervised and trained 30+ referees across multiple sports, maintaining consistent rule enforcement and safe operations.
-- Coordinated 50+ weekly game-day operations including field readiness, staff assignments, and incident response.
-- De-escalated dozens of high-pressure disputes each semester to preserve game integrity.
-- Supported recruitment and onboarding, helping evaluate candidates and accelerate training for new hires.
+- Supervised and trained 30+ referees across multiple sports, maintaining consistent rule enforcement and a safe, controlled game environment.
+- Coordinated 50+ weekly game-day operations, managing field readiness, staff assignments, and incident response.
+- De-escalated dozens of high-pressure disputes each semester, leveraging strong communication skills to preserve game integrity.
+- Supported referee recruitment and onboarding, helping evaluate candidates and accelerate training for new hires.
 
-3) Campus Recreation at UIC — Street Team & Outdoor Fields Supervisor (Chicago, IL)
-- Supervised daily operations of the Outdoor Fields Complex and enforced safety policies.
-- Coordinated setup/teardown for 10+ weekly sporting events to ensure on-time execution.
-- Conducted walkthroughs, enforced field protocols, responded to incidents, and escalated safety concerns.
-- Filed nightly facility, accident, and incident reports for compliance and internal review.
+3) Campus Recreation at UIC — Street Team and Outdoor Fields Supervisor (Chicago, IL)
+- Supervise daily operations of the Outdoor Fields Complex, enforcing policies to maintain a safe and professional athletic environment.
+- Coordinate setup and teardown of equipment for 10+ weekly sporting events, ensuring on-time execution and operational readiness.
+- Conduct walkthroughs, enforce field protocols, respond to incidents, and escalate safety concerns when necessary.
+- Complete and file nightly facility, accident, and incident reports for compliance and internal review.
 
 PROJECTS & LEADERSHIP
 
-A) Finance Mentorship Program | UIC — Peer Mentor | Sep 2025 – Present
-- Mentor new finance students through three structured meetings focused on internships, course planning, and professional development.
-- Provide one-on-one guidance on résumé refinement, networking strategy, and campus career resources.
-- Share personal experience balancing academics, CFA prep, and extracurricular commitments.
+A) Finance Mentorship Program | University of Illinois Chicago | Sep 2025 – Present
+- Mentor new finance students through three structured meetings focused on internship preparation, course planning, and professional development.
+- Provide one-on-one guidance on résumé refinement, networking strategies, and navigating campus career resources.
+- Share personal experience in securing internships and balancing academic, CFA, and extracurricular commitments.
 
-B) ESG Automation Platform “WITCH FOR FITCH” — Winner, Chicago Tech Circle Competition | Nov 2025 – Dec 2025
-- Built a platform automating ESG PDF search and Scope 1–3 extraction in ~20 seconds with ~95% consistency.
-- Re-engineered backend with multi-step validation to reduce false positives and increase throughput by 1700%.
-- Delivered a scalable pipeline that is 56x cheaper and 18x faster than human review.
+B) ESG Automation Platform "WITCH FOR FITCH" — Winner, Chicago Tech Circle Competition | Nov 2025 – Dec 2025
+- Built platform automating ESG PDF search and Scope 1–3 extraction in ~20 seconds with ~95% consistency.
+- Re-engineered backend with multi-step validation to remove false positives and increase throughput by 1700%.
+- Delivered scalable pipeline that is 56x cheaper and 18x faster than human review.
+- Context: UIC Project – FIN 294, Data + AI
 
 C) Pathfind Careers AI Workflow | Red Circle Consulting | Oct 2025 – Nov 2025
-- Developed a multi-agent GPT system in LogicStudio that reduced résumé review time by 98% and improved accuracy by 90%.
-- Built five specialized agents for résumé parsing, job matching, and outreach while lowering costs from $4,000 to $23 per agent.
-- Delivered a prototype generating top 10 job matches with verified listings and personalized recruiter email drafts.
+- Developed multi-agent GPT system in LogicStudio that reduced résumé review time, improving speed by 98% and accuracy by 90%.
+- Designed five specialized agents to automate résumé parsing, job matching, and outreach while lowering costs from $4,000 to $23 per agent.
+- Delivered functional prototype generating top 10 job matches with verified listings and personalized recruiter email drafts.
+- Context: UIC Project – FIN 294, Data + AI
 
-D) Lending Club Credit Risk Modeling | Sep 2025 – Oct 2025
-- Built a LightGBM model improving loan-default prediction accuracy from 57% to 99.9%.
-- Cut projected losses by 95% and generated $889M in projected profit impact (project estimate).
-- Produced ROI analysis, confusion-matrix evaluation, and a Model Card addressing business impact, fairness, and bias mitigation.
+D) City Analytics GPT Automation | Oct 2025
+- Built two GPT agents to automate large-scale data cleaning and feature merging for 500+ U.S. cities using Python and Pandas.
+- Integrated health, income, and cost-of-living datasets into a unified model to generate rankings and data visualizations.
+- Produced Top-5 and Bottom-3 City Insights Report identifying economic disparities and regional cost trends.
+- Context: UIC Project – FIN 294, Data + AI
 
-E) Advanced Investment Management (FIN 456) — Student Equity Analyst, Consumer Goods Sector | Jan 2025 – May 2025
-- Managed part of a $150,000 real-money student portfolio using Bloomberg Terminal for screening, valuation, and tracking.
-- Authored a 20+ page investment thesis on Gap Inc., supporting a Buy rating with DCF value $43.12 vs. $21.01 and 15.2% projected growth.
-- Proposed a 1% portfolio allocation (~$1,200) to reduce Financials overweight and improve Consumer Discretionary exposure from -2.65% to -1.65%.
+E) Lending Club Credit Risk Modeling | Sep 2025 – Oct 2025
+- Developed LightGBM model that improved loan-default prediction accuracy from 57% to 99.9%, cutting losses by 95% and generating $889M in projected profit.
+- Applied feature engineering, data preprocessing, and hyperparameter tuning on 150+ borrower variables.
+- Created confusion-matrix-based ROI analysis and Model Card addressing business impact, fairness, and bias mitigation.
+- Context: UIC Project – FIN 294, Data + AI
+
+F) Advanced Investment Management (FIN 456) — Student Equity Analyst, Consumer Goods Sector | Jan 2025 – May 2025
+- Managed part of $150,000 real-money student portfolio using Bloomberg Terminal for equity screening, valuation, and performance tracking.
+- Authored 20+ page investment thesis on Gap Inc., supporting "Buy" rating based on DCF valuation ($43.12 vs. $21.01) and 15.2% projected growth.
+- Proposed 1% portfolio allocation (~$1,200) to reduce Financials overweight and improve Consumer Discretionary exposure.
+
+SKILLS (use for "what are William's skills" — describe enthusiastically)
+- Financial Analysis & Modeling: Financial Modeling, Equity Research, Risk Assessment, Forecasting, Portfolio Analysis, Quantitative Finance, FP&A
+- Data & AI Analytics: Business Data Mining, Data Cleaning, Machine Learning (LightGBM, XGBoost), Model Evaluation, GPT/LLM Systems, Automation
+- Technical Tools: Bloomberg Terminal, R Studio, Excel (Advanced), Microsoft Access, SQL, Python, CRM Systems, Website Building, Tableau
 
 CERTIFICATIONS
 - SAP Global Trade Services — Record of Achievement (SAP Learning)
@@ -77,24 +84,16 @@ CERTIFICATIONS
 - Financial Modeling Foundations — NASBA
 - AWS Academy — Data Engineering (AWS Academy)
 
-87-DAY TRANSFORMATION CHALLENGE
-- Currently documenting fitness and personal growth journey on Instagram
-- Grew following from 0 to 85 in 14 days without paid marketing
-- 23K video views to date
-- Building audience through consistency and authentic content
-- Follow: instagram.com/williamtannaa
+CFA: CFA Level I Candidate (February 2025)
 
 GOALS
 - Short term: Finish CFA in 2026, complete bachelor's degree, land full-time job in credit, investment banking, or asset management
 - Medium term: Earn CFA charter within 2–3 years, work in Chicago
-- Career focus: Credit, investment banking, or asset management
 
-PERSONAL INTERESTS
-- Chicago Cubs fan
-- Chicago Bulls fan
-- Loves cricket
-- Follows boxing
+PERSONAL
+- 87-Day Transformation Challenge on Instagram — grew from 0 to 85 followers in 14 days, 23K video views
+- Chicago Cubs fan, Chicago Bulls fan, loves cricket, follows boxing
 
 BOT RULES
-- If a user asks for info not included above, respond: “I don’t have that info on the website yet.”
+- If asked for info not in the knowledge base, say: "I don't have that on my site yet — feel free to reach out directly!"
 - Do not guess or invent details.

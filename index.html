@@ -475,6 +475,12 @@
         .footer-cta .btn {
             display: inline-block;
         }
+        .footer-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         footer {
             background: var(--black);
             border-top: 1px solid var(--border);
@@ -749,6 +755,7 @@
                 <a href="/about" class="btn btn-primary" onclick="navigateWithAnimation(event, '/about')">About</a>
                 <a href="/resume" class="btn btn-secondary" onclick="navigateWithAnimation(event, '/resume')">Resume</a>
                 <a href="#chat-section" class="btn btn-ai" onclick="scrollToChat(event)">AI Chat</a>
+                <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" target="_blank" rel="noopener" class="btn btn-primary">Schedule a call</a>
                 <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Contact</a>
             </div>
         </div>
@@ -867,7 +874,10 @@
     <section class="footer-cta animate-on-scroll">
         <h2>Looking for a partner in finance & analytics?</h2>
         <p>Whether it's an internship, project, or collaboration — I'd love to connect.</p>
-        <a href="mailto:williamtanna280204@gmail.com" class="btn btn-primary">Let's connect</a>
+        <div class="footer-cta-buttons">
+            <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" target="_blank" rel="noopener" class="btn btn-primary">Schedule a call</a>
+            <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Email me</a>
+        </div>
     </section>
 
     <footer>
