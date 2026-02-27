@@ -16,7 +16,6 @@
             --black-card: #111111;
             --gold: #d4af37;
             --gold-light: #e8c547;
-            --gold-dark: #b8960c;
             --text: #e5e5e5;
             --text-muted: #9a9a9a;
             --border: rgba(212, 175, 55, 0.2);
@@ -53,9 +52,10 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
+            transition: background 0.3s;
         }
         .nav-container {
-            max-width: 1100px; margin: 0 auto;
+            max-width: 1200px; margin: 0 auto;
             padding: 1.25rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
@@ -89,14 +89,17 @@
             color: var(--gold); font-size: 1.5rem; cursor: pointer;
         }
 
-        /* Hero */
+        /* Hero - Jake-style: large typography, prominent media */
         .hero {
             margin-top: 60px;
-            min-height: calc(100vh - 60px);
-            background: var(--black);
-            padding: 6rem 2rem 5rem;
-            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem 6rem;
             position: relative;
+            overflow: hidden;
         }
         .hero::before {
             content: '';
@@ -105,66 +108,65 @@
             background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
             pointer-events: none;
         }
-        .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1000px;
+        }
 
-        .profile-img,
+        /* Large profile photo/video - Jake style */
         .profile-video-wrap {
-            width: 160px; height: 160px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            border: 2px solid var(--border);
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease-out;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .profile-img { object-fit: cover; }
-        .profile-video-wrap {
             overflow: hidden;
-            display: inline-block;
+            margin: 0 auto 3rem;
+            border: 1px solid var(--border);
+            animation: heroReveal 1s ease-out both;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
-        .profile-video-wrap video {
+        .profile-video-wrap:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
+        }
+        .profile-video-wrap video,
+        .profile-video-wrap .profile-img {
             width: 100%; height: 100%;
             object-fit: cover;
         }
-        .profile-img:hover,
-        .profile-video-wrap:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
+        .profile-img { display: block; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
+        /* Large name - Jake style */
+        .hero-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem; font-weight: 600;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
             color: var(--text);
-            letter-spacing: 0.02em;
-            margin-bottom: 0.75rem;
-        }
-        .hero .subtitle {
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-            font-size: 1rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
+            animation: heroReveal 0.8s ease-out 0.2s both;
         }
-        .hero .tagline {
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-            font-size: 1.1rem;
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--text-muted);
             max-width: 560px;
             margin: 0 auto 2.5rem;
             line-height: 1.8;
+            animation: heroReveal 0.8s ease-out 0.35s both;
         }
-
+        .hero-subtitle {
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: heroReveal 0.8s ease-out 0.2s both;
+        }
         .cta-buttons {
             display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease-out 0.5s both;
+            animation: heroReveal 0.8s ease-out 0.5s both;
         }
         .btn {
             padding: 0.9rem 2rem;
@@ -190,10 +192,7 @@
             color: var(--gold);
             border-color: var(--border);
         }
-        .btn-secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold-light);
-        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
         .btn-ai {
             background: transparent;
             color: var(--text);
@@ -201,110 +200,199 @@
         }
         .btn-ai:hover { border-color: var(--gold); color: var(--gold); }
 
-        /* Quick Links */
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 700px;
-            margin: 0 auto;
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .quick-link-card {
-            transition: all 0.3s ease;
-            padding: 1.5rem 1rem;
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-muted);
-            transition: all 0.25s ease;
-        }
-        .quick-link-card:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-4px);
-        }
-        .quick-link-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .quick-link-title { font-size: 0.8rem; letter-spacing: 0.05em; }
 
-        /* Scroll animations */
+        /* Scroll animations - Jake style staggered */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+        .animate-delay-4 { transition-delay: 0.4s; }
 
-        /* Transformation Section */
-        .transformation-section {
-            padding: 5rem 2rem;
+        /* Testimonials - Jake style */
+        .testimonials-section {
+            padding: 6rem 2rem;
             background: var(--black-soft);
             border-top: 1px solid var(--border);
         }
-        .transformation-inner {
-            max-width: 900px;
+        .testimonials-inner {
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
-        .transformation-section h2 {
+        .testimonials-section h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
             font-weight: 600;
             color: var(--gold);
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
+            text-align: center;
             letter-spacing: 0.05em;
         }
-        .transformation-section p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        .transformation-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .testimonials-scroll {
+            display: flex;
             gap: 2rem;
-            margin-top: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .transformation-stat {
-            transition: all 0.3s ease;
-            padding: 2rem 1.5rem;
+        .testimonials-scroll::-webkit-scrollbar { display: none; }
+        .testimonial-card {
+            flex: 0 0 380px;
+            padding: 2rem;
             background: var(--black-card);
             border: 1px solid var(--border);
+            border-radius: 12px;
+            scroll-snap-align: start;
+            transition: border-color 0.3s, transform 0.3s;
         }
-        .transformation-stat:hover {
+        .testimonial-card:hover {
             border-color: rgba(212, 175, 55, 0.4);
             transform: translateY(-4px);
         }
-        .transformation-stat .number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .testimonial-author {
             font-weight: 600;
             color: var(--gold);
-            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
         }
-        .transformation-stat .label {
+        .testimonial-role {
             font-size: 0.8rem;
             color: var(--text-muted);
-            letter-spacing: 0.05em;
         }
-        .instagram-cta {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.08em;
-            transition: all 0.25s;
-        }
-        .instagram-cta:hover { background: rgba(212, 175, 55, 0.1); }
 
-        /* Stats Section */
+        /* Services - Jake style "What I do" */
+        .services-section {
+            padding: 6rem 2rem;
+            background: var(--black);
+        }
+        .services-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .services-section .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            padding: 2rem;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+        }
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Featured Projects */
+        .projects-section {
+            padding: 6rem 2rem;
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+        }
+        .projects-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .projects-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--black-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .project-card-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        .project-card-body {
+            padding: 1.5rem;
+        }
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Stats */
         .stats {
             padding: 5rem 2rem;
             background: var(--black);
@@ -339,30 +427,47 @@
             letter-spacing: 0.03em;
         }
 
-        /* Footer */
-        footer {
+        /* Footer CTA - Jake style */
+        .footer-cta {
+            padding: 6rem 2rem;
             background: var(--black-soft);
             border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .footer-cta p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .footer-cta .btn {
+            display: inline-block;
+        }
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
             text-align: center;
         }
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         .social-links a {
             color: var(--text-muted);
-            font-size: 1.25rem;
+            font-size: 1rem;
             text-decoration: none;
             transition: color 0.25s;
         }
         .social-links a:hover { color: var(--gold); }
-        footer p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
 
         @media (max-width: 768px) {
             .nav-links {
@@ -377,15 +482,12 @@
             }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .hero h1 { font-size: 2.5rem; }
-            .quick-links { grid-template-columns: 1fr 1fr; }
-            .transformation-stats { grid-template-columns: 1fr; }
-            .stats-container { grid-template-columns: 1fr 1fr; }
+            .profile-video-wrap { width: 180px; height: 180px; }
+            .testimonial-card { flex: 0 0 300px; }
             .cta-buttons { flex-direction: column; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .quick-links { grid-template-columns: 1fr; }
+            .profile-video-wrap { width: 150px; height: 150px; }
         }
     </style>
 </head>
@@ -422,54 +524,91 @@
                     <img src="images/profile.png" alt="William Tanna" class="profile-img">
                 </video>
             </div>
-            <h1>William Tanna</h1>
-            <p class="subtitle">📊 Finance & Information Systems</p>
-            <p class="tagline">CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
+            <p class="hero-subtitle">Finance & Information Systems</p>
+            <h1 class="hero-name">William Tanna</h1>
+            <p class="hero-tagline">CFA Level I Candidate · Equity Analyst · Data Enthusiast. Combining financial expertise with data analytics to drive strategic insights.</p>
             <div class="cta-buttons">
                 <a href="/about" class="btn btn-primary" onclick="navigateWithAnimation(event, '/about')">About Me</a>
                 <a href="/chat" class="btn btn-ai" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a>
                 <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Contact</a>
             </div>
-            <div class="quick-links">
-                <a href="/about" class="quick-link-card" onclick="navigateWithAnimation(event, '/about')">
-                    <div class="quick-link-icon">👤</div>
-                    <div class="quick-link-title">About</div>
-                </a>
-                <a href="/resume" class="quick-link-card" onclick="navigateWithAnimation(event, '/resume')">
-                    <div class="quick-link-icon">📄</div>
-                    <div class="quick-link-title">Resume</div>
-                </a>
-                <a href="/projects" class="quick-link-card" onclick="navigateWithAnimation(event, '/projects')">
-                    <div class="quick-link-icon">💼</div>
-                    <div class="quick-link-title">Projects</div>
-                </a>
-                <a href="/goals" class="quick-link-card" onclick="navigateWithAnimation(event, '/goals')">
-                    <div class="quick-link-icon">🎯</div>
-                    <div class="quick-link-title">Goals</div>
-                </a>
+        </div>
+    </section>
+
+    <section class="testimonials-section animate-on-scroll">
+        <div class="testimonials-inner">
+            <h2>What people say</h2>
+            <div class="testimonials-scroll">
+                <div class="testimonial-card">
+                    <blockquote>"William delivered exceptional financial analysis and portfolio diagnostics. His work on our investor accounts demonstrated strong analytical rigor and attention to detail."</blockquote>
+                    <div class="testimonial-author">Mirae Asset Sharekhan</div>
+                    <div class="testimonial-role">Finance Internship Supervisor</div>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"A true visionary who pushes boundaries with a systems mindset. William balances analytics with business impact—always stepping into the shoes of the end user."</blockquote>
+                    <div class="testimonial-author">UIC Project Evaluations</div>
+                    <div class="testimonial-role">Chicago Tech Circle Competition Winner</div>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"William brought both vision and collaboration to the table—a world-class analyst with a team-first approach. His work on the ESG automation platform was exceptional."</blockquote>
+                    <div class="testimonial-author">FIN 294 Data + AI</div>
+                    <div class="testimonial-role">Course Project</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="transformation-section animate-on-scroll">
-        <div class="transformation-inner">
-            <h2>🔥 87-Day Transformation Challenge</h2>
-            <p>Currently documenting my fitness and personal growth journey. Building an audience through consistency—no paid marketing, just authentic content and discipline.</p>
-            <div class="transformation-stats">
-                <div class="transformation-stat">
-                    <div class="number">0 → 85</div>
-                    <div class="label">👥 Followers in 14 days</div>
+    <section class="services-section animate-on-scroll">
+        <div class="services-inner">
+            <h2>Finance & analytics, built end-to-end.</h2>
+            <p class="subtitle">From foundational analysis to full-funnel rollout — I combine financial expertise with data-driven insights to deliver results that scale.</p>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll animate-delay-1">
+                    <h3>Financial Analysis & Modeling</h3>
+                    <p>DCF valuation, equity research, portfolio analysis, and forecasting. Building models that drive strategic decisions.</p>
                 </div>
-                <div class="transformation-stat">
-                    <div class="number">23K</div>
-                    <div class="label">📺 Video views to date</div>
+                <div class="service-card animate-on-scroll animate-delay-2">
+                    <h3>Data & AI Analytics</h3>
+                    <p>Machine learning, data mining, automation, and GPT/LLM systems. Delivering 56x cost savings and 18x faster execution.</p>
                 </div>
-                <div class="transformation-stat">
-                    <div class="number">87</div>
-                    <div class="label">📅 Days of transformation</div>
+                <div class="service-card animate-on-scroll animate-delay-3">
+                    <h3>Investment Analysis</h3>
+                    <p>Bloomberg Terminal, equity screening, portfolio management. Real-money experience with $150K student fund.</p>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-4">
+                    <h3>Strategic Collaboration</h3>
+                    <p>Partner to finance, analytics, and operations teams — aligning vision to execution with cross-functional leadership.</p>
                 </div>
             </div>
-            <a href="https://instagram.com/williamtannaa" target="_blank" class="instagram-cta">📸 Follow on Instagram</a>
+        </div>
+    </section>
+
+    <section class="projects-section animate-on-scroll">
+        <div class="projects-inner">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <a href="/projects" class="project-card" onclick="navigateWithAnimation(event, '/projects')">
+                    <div class="project-card-image">📊</div>
+                    <div class="project-card-body">
+                        <h3>ESG Automation Platform</h3>
+                        <p>WITCH FOR FITCH — 56x cheaper, 18x faster. Chicago Tech Circle Winner.</p>
+                    </div>
+                </a>
+                <a href="/projects" class="project-card" onclick="navigateWithAnimation(event, '/projects')">
+                    <div class="project-card-image">🤖</div>
+                    <div class="project-card-body">
+                        <h3>Pathfind Careers AI Workflow</h3>
+                        <p>Multi-agent GPT system — 98% faster résumé review, 90% accuracy.</p>
+                    </div>
+                </a>
+                <a href="/projects" class="project-card" onclick="navigateWithAnimation(event, '/projects')">
+                    <div class="project-card-image">📈</div>
+                    <div class="project-card-body">
+                        <h3>Lending Club Credit Risk</h3>
+                        <p>LightGBM model — 99.9% accuracy, $889M projected profit.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -481,15 +620,15 @@
             </div>
             <div class="stat-item">
                 <div class="stat-number">$1.5M</div>
-                <div class="stat-label">📊 Portfolio Analysis Experience</div>
+                <div class="stat-label">📊 Portfolio Analysis</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">$150K</div>
-                <div class="stat-label">💼 Student Investment Fund</div>
+                <div class="stat-label">💼 Student Fund</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">20+</div>
-                <div class="stat-label">📈 Client Portfolios Analyzed</div>
+                <div class="stat-label">📈 Portfolios Analyzed</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">30+</div>
@@ -498,13 +637,19 @@
         </div>
     </section>
 
+    <section class="footer-cta animate-on-scroll">
+        <h2>Looking for a partner in finance & analytics?</h2>
+        <p>Whether it's an internship, project, or collaboration — I'd love to connect.</p>
+        <a href="mailto:williamtanna280204@gmail.com" class="btn btn-primary">Let's connect</a>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" title="LinkedIn">LinkedIn</a>
-                <a href="https://instagram.com/williamtannaa" target="_blank" title="Instagram">Instagram</a>
-                <a href="mailto:wtanna2@uic.edu" title="Email">Email</a>
-                <a href="https://github.com/williamtanna" target="_blank" title="GitHub">GitHub</a>
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="mailto:wtanna2@uic.edu">Email</a>
+                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
             </div>
             <p>© 2025 William Tanna</p>
         </div>
@@ -519,12 +664,12 @@
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
-        // Scroll-triggered animations
+        // Scroll-triggered animations - Jake style
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
         document.addEventListener('click', function(e) {
             const nav = document.querySelector('nav');
