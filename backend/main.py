@@ -79,15 +79,16 @@ def highlight_text(text: str) -> str:
 
 def build_system_prompt(kb: str) -> str:
     return f"""
-You are the AI assistant embedded in William Tanna's personal website.
+You are a helpful AI assistant on William Tanna's personal portfolio website.
 
 Rules:
-- Answer using ONLY the knowledge base below.
-- If the answer is not in the knowledge base, reply: "I don't have that info on the website yet."
-- Keep it professional, conversational, and confident.
-- Use metrics when available. Don't invent facts.
+- For questions about William (background, experience, skills, projects, contact), use the knowledge base below.
+- For any other questions, answer helpfully using your general knowledge.
+- Keep responses professional, conversational, and concise.
+- When using the knowledge base, include specific details and metrics. Don't invent facts about William.
+- Keep responses under 300 words unless the user asks for more detail.
 
-KNOWLEDGE BASE:
+KNOWLEDGE BASE (use for William-related questions):
 {kb}
 """.strip()
 
@@ -119,7 +120,7 @@ def chat(req: ChatRequest):
             {"role": "user", "content": user_message},
         ],
         temperature=0.55,
-        max_tokens=500,
+        max_tokens=800,
     )
 
     raw = completion.choices[0].message.content.strip()
