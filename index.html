@@ -446,6 +446,145 @@
             letter-spacing: 0.05em;
         }
 
+        /* Homepage Chat Section */
+        .chat-section {
+            padding: 6rem 2rem;
+            background: var(--black);
+        }
+        .chat-section-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .chat-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .chat-section .chat-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .chat-box {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .chat-messages-container {
+            padding: 2rem;
+            min-height: 320px;
+            max-height: 420px;
+            overflow-y: auto;
+        }
+        .chat-messages-container::-webkit-scrollbar { width: 8px; }
+        .chat-messages-container::-webkit-scrollbar-track { background: var(--black-soft); }
+        .chat-messages-container::-webkit-scrollbar-thumb { background: var(--gold); }
+        .welcome-screen {
+            text-align: center;
+            padding: 2rem;
+        }
+        .welcome-screen h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .welcome-screen p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .chat-messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .message { animation: messageSlideIn 0.3s ease; }
+        @keyframes messageSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.user { display: flex; justify-content: flex-end; }
+        .message.bot { display: flex; justify-content: flex-start; }
+        .message-bubble {
+            max-width: 80%;
+            padding: 1rem 1.25rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .message.user .message-bubble {
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 16px 16px 4px 16px;
+        }
+        .message.bot .message-bubble {
+            background: var(--black-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 16px 16px 16px 4px;
+        }
+        .typing-indicator {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem 1.25rem;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: typingAnimation 1.4s ease-in-out infinite;
+        }
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+        .chat-input-area {
+            padding: 1.5rem 2rem;
+            background: var(--black-soft);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            background: var(--black-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            resize: none;
+            font-family: inherit;
+            line-height: 1.5;
+            max-height: 120px;
+        }
+        .chat-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        .chat-send-btn {
+            padding: 1rem 1.75rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 12px;
+        }
+        .chat-send-btn:hover { background: var(--gold-light); }
+        .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -463,6 +602,8 @@
             .cta-buttons { flex-direction: column; }
             .footer-band-inner { gap: 1rem 1.5rem; }
             .footer-band-inner span { font-size: 0.8rem; }
+            .chat-input-area { flex-direction: column; }
+            .chat-send-btn { width: 100%; }
         }
         @media (max-width: 480px) {
             .profile-video-wrap { width: 150px; height: 150px; }
@@ -487,7 +628,7 @@
                 <li><a href="/projects" onclick="navigateWithAnimation(event, '/projects')">Projects</a></li>
                 <li><a href="/courses" onclick="navigateWithAnimation(event, '/courses')">Courses</a></li>
                 <li><a href="/goals" onclick="navigateWithAnimation(event, '/goals')">Goals</a></li>
-                <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
+                <li><a href="#chat-section" onclick="scrollToChat(event)">AI Chat</a></li>
             </ul>
         </div>
     </nav>
@@ -506,7 +647,7 @@
             <div class="cta-buttons">
                 <a href="/about" class="btn btn-primary" onclick="navigateWithAnimation(event, '/about')">About</a>
                 <a href="/resume" class="btn btn-secondary" onclick="navigateWithAnimation(event, '/resume')">Resume</a>
-                <a href="/chat" class="btn btn-ai" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a>
+                <a href="#chat-section" class="btn btn-ai" onclick="scrollToChat(event)">AI Chat</a>
                 <a href="mailto:williamtanna280204@gmail.com" class="btn btn-secondary">Contact</a>
             </div>
         </div>
@@ -602,6 +743,26 @@
         </div>
     </section>
 
+    <section class="chat-section animate-on-scroll" id="chat-section">
+        <div class="chat-section-inner">
+            <h2>🤖 Chat with me</h2>
+            <p class="chat-subtitle">Ask about my experience, projects, or anything else — powered by AI. <a href="/chat" onclick="navigateWithAnimation(event, '/chat')" style="color: var(--gold); text-decoration: none;">Open full chat →</a></p>
+            <div class="chat-box">
+                <div class="chat-messages-container" id="homeChatMessages">
+                    <div class="welcome-screen" id="homeWelcomeScreen">
+                        <h3>Ask me anything</h3>
+                        <p>Experience, skills, projects, career goals — or any topic you'd like.</p>
+                    </div>
+                    <div class="chat-messages-list" id="homeMessagesList"></div>
+                </div>
+                <div class="chat-input-area">
+                    <textarea class="chat-input" id="homeChatInput" placeholder="Type your question..." rows="1" onkeydown="handleHomeChatKeyDown(event)"></textarea>
+                    <button class="chat-send-btn" id="homeSendBtn" onclick="sendHomeChatMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="footer-cta animate-on-scroll">
         <h2>Looking for a partner in finance & analytics?</h2>
         <p>Whether it's an internship, project, or collaboration — I'd love to connect.</p>
@@ -629,6 +790,13 @@
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
+        function scrollToChat(e) {
+            const target = document.getElementById('chat-section');
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
         // Scroll-triggered animations - Jake style
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -643,6 +811,71 @@
                 links.classList.remove('active');
             }
         });
+
+        // Homepage chat
+        const homeChatInput = document.getElementById('homeChatInput');
+        homeChatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+        function handleHomeChatKeyDown(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendHomeChatMessage();
+            }
+        }
+        function addHomeChatMessage(text, sender) {
+            const list = document.getElementById('homeMessagesList');
+            const div = document.createElement('div');
+            const id = 'home-msg-' + Date.now();
+            div.id = id;
+            div.className = `message ${sender}`;
+            div.innerHTML = `<div class="message-bubble">${text}</div>`;
+            list.appendChild(div);
+            const container = document.getElementById('homeChatMessages');
+            container.scrollTop = container.scrollHeight;
+            const welcome = document.getElementById('homeWelcomeScreen');
+            if (welcome && list.children.length > 0) welcome.style.display = 'none';
+            return id;
+        }
+        async function sendHomeChatMessage() {
+            const input = document.getElementById('homeChatInput');
+            const btn = document.getElementById('homeSendBtn');
+            const msg = input.value.trim();
+            if (!msg) return;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            addHomeChatMessage(msg, 'user');
+            input.value = '';
+            input.style.height = 'auto';
+            const typingId = addHomeChatMessage('<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>', 'bot');
+            try {
+                const PRODUCTION_API = 'https://william-tanna-chat.onrender.com';
+                const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : PRODUCTION_API;
+                const res = await fetch(`${API_BASE}/api/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+                document.getElementById(typingId).remove();
+                if (data.success && data.response) {
+                    addHomeChatMessage(data.response, 'bot');
+                } else if (data.detail) {
+                    addHomeChatMessage('Sorry, ' + (typeof data.detail === 'string' ? data.detail : data.detail.detail || 'something went wrong.'), 'bot');
+                } else {
+                    addHomeChatMessage('Sorry, I couldn\'t process that request.', 'bot');
+                }
+            } catch (err) {
+                document.getElementById(typingId).remove();
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                addHomeChatMessage(isLocal ? 'Sorry, I can\'t connect. Run the backend: <code>cd backend && uvicorn main:app --port 8000</code>' : 'Sorry, I can\'t connect right now. Try again in a moment.', 'bot');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send';
+                input.focus();
+            }
+        }
     </script>
 </body>
 </html>
