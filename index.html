@@ -104,33 +104,48 @@
         .nav-links a:hover { color: var(--gold); }
         .menu-toggle { display: none; }
 
-        /* Hero - name behind photo, tagline+CTAs in front, chat on side */
+        /* Hero - William (masked), photo, tagline+CTAs. Mask = photo shows through text. */
         .hero {
             min-height: 100vh;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 2rem 3rem;
+            gap: 2rem;
         }
-        /* William Tanna - large text behind the picture */
+        /* 1. William Tanna - TEXT MASK: photo shows through the letters */
+        .hero-name-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .hero-name {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
             font-family: 'DM Sans', -apple-system, sans-serif;
-            font-size: clamp(5rem, 18vw, 14rem);
+            font-size: clamp(3rem, 12vw, 7rem);
             font-weight: 800;
-            color: var(--gold);
             letter-spacing: -0.04em;
             line-height: 0.9;
-            opacity: 0.25;
-            z-index: 1;
-            white-space: nowrap;
-            pointer-events: none;
+            text-align: center;
+            background-image: url('images/profile.png');
+            background-size: cover;
+            background-position: center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
+        /* 2. Photo - middle layer */
         .hero-photo {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            min-height: 280px;
+            max-height: 50vh;
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -140,16 +155,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 12px;
         }
         .hero-photo img.profile-img {
             display: block;
         }
-        /* B&W filter */
+        /* B&W with brightness/contrast so face is visible */
         .hero-photo video,
         .hero-photo img {
-            filter: grayscale(100%);
+            filter: grayscale(100%) brightness(1.35) contrast(1.2);
         }
-        /* Hero chat - floating sidebar on right */
+        /* Hero chat - floating, draggable (position set by JS) */
         .hero-chat {
             position: fixed;
             top: 50%;
@@ -175,6 +191,8 @@
             letter-spacing: 0.05em;
             text-align: center;
             flex-shrink: 0;
+            cursor: move;
+            user-select: none;
         }
         .hero-chat-messages {
             flex: 1;
@@ -228,30 +246,27 @@
         .hero-chat .message-avatar { width: 28px; height: 28px; border-width: 1px; }
         .hero-chat .typing-dot { width: 6px; height: 6px; }
 
-        /* Tagline + CTAs - in front of picture */
+        /* 3. Tagline + CTAs - bottom layer */
         .hero-text {
-            position: absolute;
-            inset: 0;
-            z-index: 3;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 4rem 3rem 4rem 3rem;
-            background: linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 40%, transparent 70%);
+            align-items: center;
+            text-align: center;
+            max-width: 560px;
         }
         .hero-tagline {
             font-size: clamp(0.95rem, 1.5vw, 1.1rem);
             color: var(--text-muted);
             line-height: 1.6;
-            max-width: 420px;
             margin-bottom: 1.5rem;
         }
         .hero-subtitle { display: none; }
         .cta-buttons {
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .cta-buttons .btn-primary {
             background: var(--gold);
@@ -696,8 +711,9 @@
         .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         @media (max-width: 768px) {
-            .hero-name { font-size: clamp(3.5rem, 25vw, 6rem); opacity: 0.2; }
-            .hero-text { padding: 3rem 2rem 2rem; background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.9) 60%); }
+            .hero-name { font-size: clamp(2.5rem, 14vw, 5rem); }
+            .hero { padding: 1.5rem 1rem 2rem; gap: 1.5rem; }
+            .hero-photo { max-height: 45vh; }
             .hero-chat {
                 top: auto;
                 bottom: 1rem;
@@ -754,7 +770,9 @@
     </nav>
 
     <section class="hero">
-        <h1 class="hero-name" aria-hidden="true">William Tanna</h1>
+        <div class="hero-name-wrap">
+            <h1 class="hero-name">William Tanna</h1>
+        </div>
         <div class="hero-photo">
             <video autoplay loop muted playsinline poster="images/profile.png" aria-label="William Tanna">
                 <source src="images/profile.mov" type="video/quicktime">
@@ -774,9 +792,9 @@
         </div>
     </section>
 
-    <!-- Floating chat sidebar -->
-    <div class="hero-chat">
-        <div class="hero-chat-header">💬 Ask me anything — Recruiters & visitors</div>
+    <!-- Floating draggable chat -->
+    <div class="hero-chat" id="heroChat">
+        <div class="hero-chat-header" id="heroChatDragHandle">💬 Ask me anything — Recruiters & visitors</div>
         <div class="hero-chat-messages" id="heroChatMessages">
             <div class="welcome-screen" id="heroWelcomeScreen">
                 <h3 style="font-size:1rem;color:var(--gold);margin-bottom:0.4rem;">Chat with William</h3>
@@ -951,6 +969,68 @@
                 links.classList.remove('active');
             }
         });
+
+        // Draggable hero chat
+        (function() {
+            const chat = document.getElementById('heroChat');
+            const handle = document.getElementById('heroChatDragHandle');
+            if (!chat || !handle) return;
+            let isDragging = false, startX, startY, startLeft, startTop;
+            handle.addEventListener('mousedown', function(e) {
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+                isDragging = true;
+                const rect = chat.getBoundingClientRect();
+                startX = e.clientX;
+                startY = e.clientY;
+                startLeft = rect.left;
+                startTop = rect.top;
+                chat.style.right = 'auto';
+                chat.style.bottom = 'auto';
+                chat.style.left = startLeft + 'px';
+                chat.style.top = startTop + 'px';
+                chat.style.transform = 'none';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                chat.style.left = (startLeft + dx) + 'px';
+                chat.style.top = (startTop + dy) + 'px';
+            });
+            document.addEventListener('mouseup', function() {
+                if (isDragging) isDragging = false;
+            });
+            handle.addEventListener('touchstart', function(e) {
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+                const t = e.touches[0];
+                const rect = chat.getBoundingClientRect();
+                startX = t.clientX;
+                startY = t.clientY;
+                startLeft = rect.left;
+                startTop = rect.top;
+                chat.style.right = 'auto';
+                chat.style.bottom = 'auto';
+                chat.style.left = startLeft + 'px';
+                chat.style.top = startTop + 'px';
+                chat.style.transform = 'none';
+                isDragging = true;
+            }, { passive: true });
+            document.addEventListener('touchmove', function(e) {
+                if (!isDragging || !e.touches.length) return;
+                const t = e.touches[0];
+                const dx = t.clientX - startX;
+                const dy = t.clientY - startY;
+                chat.style.left = (startLeft + dx) + 'px';
+                chat.style.top = (startTop + dy) + 'px';
+                startX = t.clientX;
+                startY = t.clientY;
+                startLeft = parseFloat(chat.style.left);
+                startTop = parseFloat(chat.style.top);
+            }, { passive: true });
+            document.addEventListener('touchend', function() {
+                isDragging = false;
+            });
+        })();
 
         // Hero chat (recruiter hook)
         const heroChatInput = document.getElementById('heroChatInput');
