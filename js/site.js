@@ -123,6 +123,7 @@
     function open() {
       panel.classList.add("is-open");
       fab.setAttribute("aria-expanded", "true");
+      if (typeof warmChatBackend === "function") warmChatBackend();
     }
 
     function close() {
@@ -138,8 +139,21 @@
     if (closeBtn) closeBtn.addEventListener("click", close);
   };
 
+  /* —— Warm Render backend early (reduces cold-start lag on first chat) —— */
+  function warmChatBackend() {
+    try {
+      var host = window.location.hostname;
+      var base =
+        host === "localhost" || host === "127.0.0.1"
+          ? "http://localhost:8000"
+          : "https://william-tanna-chat.onrender.com";
+      fetch(base + "/api/health", { method: "GET", mode: "cors", cache: "no-store" }).catch(function () {});
+    } catch (e) {}
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initScrollReveals();
+    warmChatBackend();
   });
 })();

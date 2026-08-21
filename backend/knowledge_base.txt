@@ -35,7 +35,7 @@ NOTE: Latest / current narrative emphasizes building (ClearSpend, Chargeback) pl
 - GitHub: https://github.com/williamtanna2824/chargeback-risk-model
 
 4) Michael B. Michael Investment Fund — Quantitative Research Analyst Intern | Jan 2025 – May 2025 | $150K AUM
-- Built 20+ page investment thesis and DCF on Gap Inc.: $43.12 fair value vs $21.01 market (105% implied upside); investment committee approved live ~2% allocation (~$3,000)
+- Built 20+ page investment thesis and DCF on Gap Inc.: $43.12 fair value vs $21.01 market (105% implied upside); investment committee approved live ~1% allocation (~$1,200)
 - Automated Python/SQL data ingestion pipelines (−40% processing time); Monte Carlo stress tests across bull/base/bear
 - Screened securities with Python factor models; co-authored consumer sector analysis (paper + presentation) using Bloomberg Terminal, Market Pulse, and Charles Schwab equity ratings
 

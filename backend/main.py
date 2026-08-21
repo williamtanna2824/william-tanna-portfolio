@@ -2,6 +2,7 @@
 
 import os
 import re
+from typing import Optional
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
@@ -55,8 +56,22 @@ class ChatResponse(BaseModel):
 # Helpers
 # ---------------------------
 
+# Cache knowledge base in memory (avoid disk read every request)
+_KB_CACHE: Optional[str] = None
+_KB_MTIME: Optional[float] = None
+
 def load_knowledge_base() -> str:
+    global _KB_CACHE, _KB_MTIME
     if KB_PATH.exists():
+        try:
+            mtime = KB_PATH.stat().st_mtime
+            if _KB_CACHE is not None and _KB_MTIME == mtime:
+                return _KB_CACHE
+            _KB_CACHE = KB_PATH.read_text(encoding="utf-8").strip()
+            _KB_MTIME = mtime
+            return _KB_CACHE
+        except OSError:
+            pass
         return KB_PATH.read_text(encoding="utf-8").strip()
     return (
         "NAME: William Tanna\n"
@@ -129,8 +144,8 @@ def chat(req: ChatRequest):
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_message},
         ],
-        temperature=0.55,
-        max_tokens=800,
+        temperature=0.5,
+        max_tokens=450,
     )
 
     raw = completion.choices[0].message.content.strip()
