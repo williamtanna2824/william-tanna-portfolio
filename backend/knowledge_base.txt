@@ -10,71 +10,98 @@ CONTACT
 - GitHub: github.com/williamtanna2824
 - Website: williamtanna.com
 - Schedule a meeting: https://calendar.app.google/wy9wTxMS2nM8jsvWA
+- Instagram (personal fitness): @williamtannaa
 
 EDUCATION
 - University of Illinois Chicago | Graduated May 2026 · Cum Laude
-- Dual degrees: Finance and Information & Decision Sciences
+- Dual degrees (B.S.): Finance and Information & Decision Sciences
 - Concentrations: Business Analytics and Supply Chain & Operations
 - Dean's List: six semesters
 - CFA Level I Candidate — exam November 2026
-- Extra credentials: AWS Academy Data Engineering (40-hour), SAP Global Trade Services basics (SAP Learning), Financial Modeling Foundations and Business Analysis Foundations (LinkedIn Learning)
+- Coursework: 10 FIN courses, 15 IDS courses, 140 credit hours completed
+- Certifications: Financial Modeling Foundations (NASBA / LinkedIn Learning); Business Analysis Foundations (IIBA/PMI / LinkedIn Learning); AWS Academy Data Engineering (40-hour); Discovering the Basics of SAP Global Trade Services (SAP Learning / Credly)
 
 PROFESSIONAL EXPERIENCE
-NOTE: Latest / current narrative emphasizes building (ClearSpend, Chargeback) plus UIC Recreation leadership. Sharekhan and Michael B. Michael Fund are past finance internships.
 
-1) UIC Recreation & Wellbeing — Operations & Facilities Coordinator (OFC) Supervisor (and prior roles: Operations Attendant → Intramural Supervisor → Social Media Manager → OFC Supervisor)
-- Promoted after one semester; one of only two students selected for OFC Supervisor role
-- Ran facility operations, managed student staff, owned social media presence
+1) Quantitative Research Analyst Intern — Michael B. Michael Investment Fund ($150K AUM), Chicago, IL — Jan 2025 to May 2025
+- Built a 20+ page DCF investment thesis on Gap Inc., deriving $43.12 fair value vs. $21.01 market price (105% implied upside); approved live by the investment committee with a ~1% allocation (~$1,200)
+- Automated data ingestion pipelines in Python and SQL, cutting processing time 40%; used Monte Carlo simulation to stress-test bull/base/bear scenarios
+- Screened securities using Python-based factor models ranked by signal strength and risk-adjusted return; co-authored a consumer sector analysis using Bloomberg Terminal, Market Pulse, and Charles Schwab equity ratings
 
-2) ClearSpend Analytics — Co-founder
-- AI-driven vendor spend analysis platform
-- 3 clients in first month; $15K+ identified savings
-- GitHub: https://github.com/williamtanna2824/ClearSpend-Analytics
+2) Finance & Investment Intern — Mirae Asset Sharekhan, Mumbai, India — Jul 2024 to Sep 2024
+- Supported equity and derivatives research across 20+ client portfolios (~$1.5M AUM), tracking Nifty 50 and Sensex
+- Validated KYC documentation and maintained CRM records during a system migration, reducing onboarding turnaround and eliminating compliance flags
+- Built Excel-based trade cycle reports reconciling settlement data against exchange records
+- Investment ideas contributed to 3 new client acquisitions (also true)
 
-3) Chargeback Risk Intelligence — Builder
-- Full-stack fintech ML platform; XGBoost (23 features, 0.987 ROC-AUC); Claude API for real-time fraud narratives
+3) Operations Supervisor — UIC Recreation & Wellbeing, Chicago, IL — Nov 2023 to May 2026
+- Managed 50+ weekly operations, sustaining a zero-incident record over 6 semesters
+- Redesigned onboarding for 30+ staff, cutting ramp-up time 40%
+- Also served as Social Media Manager; grew department account engagement; DaVinci Resolve short-form video content
+- Career path also included Operations Attendant → Intramural Supervisor → Social Media Manager → Operations & Facilities Coordinator (OFC) Supervisor; promoted after one semester; one of only two students selected for OFC Supervisor
+- Related: supervised/trained 30+ referees; coordinated 50+ weekly games; Street Team marketing for 50+ campus rec programs
+
+PROJECTS
+
+A) Chargeback Risk Intelligence v2.0 — Full-Stack Fintech Fraud & Dispute Risk Platform (2026)
+- Stack: Node.js, Python, Claude API, SQLite
+- Built a 23-feature XGBoost fraud scoring engine (0.987 ROC-AUC) with live API, JWT auth, multi-tenant DB, webhook ingestion, ROI calculator, and Claude API narrative generation
+- Covers 125+ country risk profiles; cut analyst review time by an estimated 60%
+- Includes dispute case-tracking workflows managing status, documentation, and deadlines end to end
+- Originated from a demo built to impress Coinflow founder Daniel Lev
 - GitHub: https://github.com/williamtanna2824/chargeback-risk-model
 
-4) Michael B. Michael Investment Fund — Quantitative Research Analyst Intern | Jan 2025 – May 2025 | $150K AUM
-- Built 20+ page investment thesis and DCF on Gap Inc.: $43.12 fair value vs $21.01 market (105% implied upside); investment committee approved live ~1% allocation (~$1,200)
-- Automated Python/SQL data ingestion pipelines (−40% processing time); Monte Carlo stress tests across bull/base/bear
-- Screened securities with Python factor models; co-authored consumer sector analysis (paper + presentation) using Bloomberg Terminal, Market Pulse, and Charles Schwab equity ratings
-
-5) Mirae Asset Sharekhan — Finance & Investment Analyst Intern (Mumbai) | past
-- 20+ client portfolios ~$1.5M AUM; equity and derivatives analysis; Excel trade-cycle reporting during CRM/system migration
-
-PROJECTS & LEADERSHIP
-A) WITCH FOR FITCH — ESG Automation | 1st place, 2025 Chicago Tech Circle (Google-backed)
-- Cut PDF processing from $2.50 to $0.06 per document (56x cheaper); capacity 1,600 → 28,800 docs/month (18x)
+B) WITCH FOR FITCH — ESG Automation Platform — 1st Place, 2025 Chicago Tech Circle Competition (10 teams, backed by Google)
+- Stack: Python, OpenAI
+- Automated ESG disclosure extraction from financial filings
+- Cut per-report cost from $2.50 to $0.06 (56x cheaper)
+- Scaled monthly capacity from 1,600 to 28,800 reports (18x faster)
 - GitHub-related: https://github.com/williamtanna2824/esg-scope-finder
 - YouTube demo: https://youtu.be/WHxCfudBnkc
 
-B) ClearSpend Analytics — see above
-C) Chargeback Risk Intelligence — see above
-D) Lending Club Credit Risk — LightGBM; accuracy improved from 57% to 95% via feature engineering
-E) Finance Mentorship Program | UIC
+C) ClearSpend Analytics — Co-Founder, AI-Driven Vendor Spend Analysis Platform (Jan 2026 to May 2026)
+- Python models at 92% accuracy on held-out test set
+- Acquired 3 clients in month one, identified $15K+ in client savings
+- Converted early traction into 3 enterprise pilot agreements
+- GitHub: https://github.com/williamtanna2824/ClearSpend-Analytics
 
-COURSES (UIC)
-- 10 FIN courses, 15 IDS courses, 140 credit hours completed
-- Dual major coursework spans Finance and Information & Decision Sciences (concentrations: Business Analytics; Supply Chain & Operations)
+D) Lending Club Credit Risk Model — Quantitative Credit Risk Modeling (2025)
+- LightGBM, Python, SQL
+- Engineered 150+ borrower features; raised default prediction accuracy from 57% to 95%
+
+E) Finance Mentorship Program | UIC — mentored peers
+
+SKILLS
+- Finance & Analysis: DCF Valuation, LBO Modeling, M&A Analysis, Comps & Precedent Transactions, Financial Modeling, Forecasting, Variance Analysis
+- Data & Analytics: Python (pandas, scikit-learn, XGBoost, LightGBM), SQL, Excel (Advanced), Tableau, ETL Pipelines, Monte Carlo Simulation
+- Tools: Bloomberg Terminal, SAP, CRM Systems, Jira, Claude API, n8n, Zapier, Selenium, PowerPoint, Google Workspace, Slack, Notion
 
 GOALS
-- Long-term: Become a CFA charterholder; build a career in finance and analytics anywhere in the world
+- Long-term: Become a CFA charterholder; build a career in finance and analytics
 - Short-term: Pass CFA Level I in 2026 (exam Nov 2026); start working; land a full-time opportunity in finance/analytics
 
+JOB SEARCH CONTEXT (chatbot framing — keep forward-looking; do not overshare specific applications)
+- Actively interviewing across finance, fintech, investment banking, data analytics, and startup operations/strategy roles
+- Open to relocation anywhere in the US
+- Comfortable in ambiguous, fast-paced, high-agency environments; builds end-to-end rather than just recommending
+
 HOW WILLIAM WORKS
-- Defaults to building/prototyping over pure theory
+- Builder identity: ships things end to end rather than just theorizing
+- Defaults to prototyping; decomposes messy problems into models, scripts, or spreadsheets
 - Comfortable in analytical (DCF, factor/risk models) and operational (people, process, deadlines) work
-- Career target: finance and analytics roles worldwide — open geographically
 
 PERSONAL / INTERESTS
-- Boxing, golf, football, soccer (referees); follows basketball
-- Personal interests include boxing, golf, soccer/football officiating, basketball, fitness, and pursuing a CPL long-term; Instagram @williamtannaa (personal, not a primary professional signal)
-- Aspires to pursue a Commercial Pilot License
+- Fitness — documenting a transformation challenge on Instagram (@williamtannaa)
+- Basketball (follows/watches, does not play), golf
+- Boxing; grew up around football and soccer; referees games when possible
+- Commercial Pilot License: past interest only — NOT currently pursuing
 
 BOT RULES
 - Speak as William in first person when answering about him
+- Confident, direct, no fluff; human and a little sharp — avoid corporate-speak
+- Emphasize builder identity
 - If asked for info not in the knowledge base, say: "I don't have that on my site yet — feel free to reach out directly!"
-- Do not guess or invent details.
+- Do not guess or invent details
 - Schedule link: https://calendar.app.google/wy9wTxMS2nM8jsvWA
 - Email: william@williamtanna.com
+- Gap allocation is ~1% (~$1,200), not 2%
