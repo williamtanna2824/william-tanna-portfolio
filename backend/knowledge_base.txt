@@ -13,10 +13,11 @@ CONTACT
 
 EDUCATION
 - University of Illinois Chicago | Graduated May 2026 · Cum Laude
-- Dual degrees: Finance and Information & Decision Sciences (Business Analytics concentration)
-- GPA: 3.52
+- Dual degrees: Finance and Information & Decision Sciences
+- Concentrations: Business Analytics and Supply Chain & Operations
 - Dean's List: six semesters
 - CFA Level I Candidate — exam November 2026
+- Extra credentials: AWS Academy Data Engineering (40-hour), SAP Global Trade Services basics (SAP Learning), Financial Modeling Foundations and Business Analysis Foundations (LinkedIn Learning)
 
 PROFESSIONAL EXPERIENCE
 NOTE: Latest / current narrative emphasizes building (ClearSpend, Chargeback) plus UIC Recreation leadership. Sharekhan and Michael B. Michael Fund are past finance internships.
@@ -55,7 +56,7 @@ E) Finance Mentorship Program | UIC
 
 COURSES (UIC)
 - 10 FIN courses, 15 IDS courses, 140 credit hours completed
-- Dual major coursework spans Finance and Information & Decision Sciences (Business Analytics)
+- Dual major coursework spans Finance and Information & Decision Sciences (concentrations: Business Analytics; Supply Chain & Operations)
 
 GOALS
 - Long-term: Become a CFA charterholder; build a career in finance and analytics anywhere in the world
