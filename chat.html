@@ -6,23 +6,25 @@
     <title>AI Chat — William Tanna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* tokens from css/site.css */
         :root {
-            --black: #0a0a0a;
-            --black-soft: #141414;
-            --black-card: #111111;
-            --gold: #d4af37;
-            --gold-light: #e8c547;
-            --gold-dark: #b8960c;
-            --text: #e5e5e5;
-            --text-muted: #9a9a9a;
-            --border: rgba(212, 175, 55, 0.2);
+            --black: var(--bg);
+            --black-soft: var(--bg-soft);
+            --black-card: var(--bg-elevated);
+            --gold: var(--accent);
+            --gold-light: var(--accent-bright);
+            --gold-dark: var(--accent-2);
+            --text: var(--text);
+            --text-muted: var(--muted);
+            --border: var(--border);
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-family: var(--font-body, 'DM Sans', sans-serif);
             line-height: 1.6;
             color: var(--text);
             background: var(--black);
@@ -41,7 +43,7 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.75rem; font-weight: 600;
             color: var(--gold); text-decoration: none;
         }
@@ -79,7 +81,7 @@
             text-align: center;
         }
         .chat-header h1 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 2.5rem;
             font-weight: 600;
             color: var(--gold);
@@ -112,7 +114,7 @@
             padding: 4rem 2rem;
         }
         .welcome-screen h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.75rem;
             color: var(--gold);
             margin-bottom: 0.75rem;
@@ -361,22 +363,31 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">WT</a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/resume">Resume</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/goals">Goals</a></li>
-                <li><a href="/chat" class="active ai-nav-link">AI Chat</a></li>
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+        <div class="transition-wipe"></div>
+        <div class="transition-content">
+            <div class="transition-mark">WT</div>
+            <div class="loading-text">Loading</div>
+        </div>
+    </div>
+
+    <div class="site-nav-backdrop" id="siteNavBackdrop"></div>
+
+        <header class="site-nav">
+        <div class="site-nav-inner">
+            <a href="/" class="site-brand" onclick="navigateWithAnimation(event, '/')">William <span>Tanna</span></a>
+            <button type="button" class="site-nav-toggle" id="siteNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNavLinks">+</button>
+            <ul class="site-nav-links" id="siteNavLinks">
+                <li><a href="/" onclick="navigateWithAnimation(event, '/')">Home</a></li>
+                <li><a href="/about" onclick="navigateWithAnimation(event, '/about')">About</a></li>
+                <li><a href="/resume" onclick="navigateWithAnimation(event, '/resume')">Resume</a></li>
+                <li><a href="/projects" onclick="navigateWithAnimation(event, '/projects')">Projects</a></li>
+                <li><a href="/courses" onclick="navigateWithAnimation(event, '/courses')">Courses</a></li>
+                <li><a href="/goals" onclick="navigateWithAnimation(event, '/goals')">Goals</a></li>
+                <li><a href="/chat" class="active" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <!-- Chat Page -->
     <div class="chat-page">
@@ -412,24 +423,20 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://calendar.app.google/wy9wTxMS2nM8jsvWA" target="_blank" rel="noopener">Schedule a call</a>
-            <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
-            <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
-            <a href="mailto:william@williamtanna.com">Email</a>
-            <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+        <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank" rel="noopener">Instagram</a>
+                <a href="mailto:william@williamtanna.com">Email</a>
+                <a href="https://github.com/williamtanna2824" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            <p>© 2026 William Tanna</p>
         </div>
-        <p>© 2025 William Tanna</p>
     </footer>
 
+    <script src="js/site.js"></script>
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-
         // Auto-resize textarea
         const textarea = document.getElementById('chatInput');
         textarea.addEventListener('input', function() {
@@ -534,15 +541,6 @@
             }
         }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const navLinks = document.getElementById('navLinks');
-            
-            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+        </script>
 </body>
 </html>

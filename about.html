@@ -6,23 +6,25 @@
     <title>About — William Tanna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* tokens from css/site.css */
         :root {
-            --black: #0a0a0a;
-            --black-soft: #141414;
-            --black-card: #111111;
-            --gold: #d4af37;
-            --gold-light: #e8c547;
-            --gold-dark: #b8960c;
-            --text: #e5e5e5;
-            --text-muted: #9a9a9a;
-            --border: rgba(212, 175, 55, 0.2);
+            --black: var(--bg);
+            --black-soft: var(--bg-soft);
+            --black-card: var(--bg-elevated);
+            --gold: var(--accent);
+            --gold-light: var(--accent-bright);
+            --gold-dark: var(--accent-2);
+            --text: var(--text);
+            --text-muted: var(--muted);
+            --border: var(--border);
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-family: var(--font-body, 'DM Sans', sans-serif);
             line-height: 1.7;
             color: var(--text);
             background: var(--black);
@@ -39,7 +41,7 @@
         .page-transition.active { opacity: 1; pointer-events: all; }
         .transition-content { text-align: center; }
         .tiger-runner { font-size: 4rem; color: var(--gold); }
-        .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
+        .loading-text { color: var(--gold); font-family: var(--font-display, Syne, sans-serif); font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
         nav {
             position: fixed; top: 0; right: 0;
             z-index: 1000;
@@ -110,7 +112,7 @@
             text-align: center;
         }
         .page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 2.75rem;
             font-weight: 600;
             color: var(--text);
@@ -157,7 +159,7 @@
             justify-content: center;
         }
         .about-summary h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.75rem;
             font-weight: 600;
             color: var(--gold);
@@ -176,7 +178,7 @@
             margin-bottom: 3rem;
         }
         .details-section h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--gold);
@@ -215,7 +217,7 @@
             border: 1px solid var(--border);
         }
         .story-section h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--gold);
@@ -228,7 +230,7 @@
             border: 1px solid var(--border);
         }
         .story-block h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--gold);
@@ -248,7 +250,7 @@
             margin-top: 1.5rem;
         }
         .transformation-block h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--gold);
@@ -304,20 +306,27 @@
             .about-grid { grid-template-columns: 1fr; }
             .details-grid { grid-template-columns: 1fr; }
         }
+    
+        .page-header { padding-top: calc(var(--nav-h) + 3rem) !important; }
+        .chat-page { padding-top: calc(var(--nav-h) + 1rem); }
     </style>
 </head>
 <body>
-    <div class="page-transition" id="pageTransition">
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+        <div class="transition-wipe"></div>
         <div class="transition-content">
-            <div class="tiger-runner">🐅</div>
+            <div class="transition-mark">WT</div>
             <div class="loading-text">Loading</div>
         </div>
     </div>
 
-    <nav>
-        <div class="nav-container">
-            <button class="nav-plus" onclick="toggleMenu()" aria-label="Menu">+</button>
-            <ul class="nav-links" id="navLinks">
+    <div class="site-nav-backdrop" id="siteNavBackdrop"></div>
+
+    <header class="site-nav">
+        <div class="site-nav-inner">
+            <a href="/" class="site-brand" onclick="navigateWithAnimation(event, '/')">William <span>Tanna</span></a>
+            <button type="button" class="site-nav-toggle" id="siteNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNavLinks">+</button>
+            <ul class="site-nav-links" id="siteNavLinks">
                 <li><a href="/" onclick="navigateWithAnimation(event, '/')">Home</a></li>
                 <li><a href="/about" class="active" onclick="navigateWithAnimation(event, '/about')">About</a></li>
                 <li><a href="/resume" onclick="navigateWithAnimation(event, '/resume')">Resume</a></li>
@@ -327,126 +336,114 @@
                 <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <section class="page-header animate-on-scroll">
-        <h1>👋 About Me</h1>
-        <p>Finance professional passionate about data-driven decision making and strategic investment analysis</p>
+        <h1>About Me</h1>
+        <p>Finance and analytics graduate who likes building things as much as analyzing them.</p>
     </section>
 
     <div class="container">
         <div class="about-grid animate-on-scroll">
             <div class="about-photo">
-                <img src="images/profile.png" alt="William Tanna" onerror="this.src='https://via.placeholder.com/400x500?text=William+Tanna';">
-                <p class="photo-caption">Finance & Data Analytics</p>
+                <img src="images/profile.png" alt="William Tanna">
+                <p class="photo-caption">UIC · Cum Laude · CFA Level I Candidate</p>
             </div>
             <div class="about-summary">
-                <h2>👋 Hello, I'm William</h2>
-                <p>I'm a Finance and Information & Decision Sciences student at the University of Illinois Chicago, pursuing my passion for investment analysis and financial technology. As a CFA Level I candidate, I combine rigorous financial training with advanced data analytics skills to uncover insights and drive strategic decisions.</p>
-                <p>My journey in finance began with a fascination for how markets work and how data can reveal hidden patterns in investment opportunities. This curiosity led me to pursue dual expertise in finance and information systems, allowing me to bridge the gap between traditional financial analysis and modern data science.</p>
+                <h2>I'm William Tanna</h2>
+                <p>I'm a recent finance and analytics graduate who likes building things as much as I like analyzing them.</p>
+                <p>I graduated Cum Laude from the University of Illinois Chicago in May 2026 with dual degrees in Finance and Information &amp; Decision Sciences (Business Analytics concentration), a 3.52 GPA, and six semesters on the Dean's List. I'm currently a CFA Level I candidate, sitting for the exam in November 2026.</p>
             </div>
         </div>
 
         <div class="details-section animate-on-scroll">
-            <h2>📋 Personal Information</h2>
+            <h2>At a glance</h2>
             <div class="details-grid">
                 <div class="detail-card">
-                    <div class="detail-label">📍 Location</div>
+                    <div class="detail-label">Location</div>
                     <div class="detail-value">Chicago, Illinois</div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">🎓 University</div>
-                    <div class="detail-value">University of Illinois Chicago</div>
+                    <div class="detail-label">Education</div>
+                    <div class="detail-value">UIC · Cum Laude · May 2026</div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📚 Major</div>
-                    <div class="detail-value">Finance & Information & Decision Sciences</div>
+                    <div class="detail-label">Degrees</div>
+                    <div class="detail-value">Finance &amp; IDS (Business Analytics)</div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📊 GPA</div>
-                    <div class="detail-value">3.47</div>
+                    <div class="detail-label">GPA</div>
+                    <div class="detail-value">3.52</div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📜 Certification</div>
-                    <div class="detail-value">CFA Level I Candidate</div>
+                    <div class="detail-label">CFA</div>
+                    <div class="detail-value">Level I · Nov 2026 exam</div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📧 Email</div>
+                    <div class="detail-label">Email</div>
                     <div class="detail-value"><a href="mailto:william@williamtanna.com">william@williamtanna.com</a></div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📅 Schedule a call</div>
-                    <div class="detail-value"><a href="https://calendar.app.google/wy9wTxMS2nM8jsvWA" target="_blank" rel="noopener">Book a time to talk</a></div>
+                    <div class="detail-label">Schedule</div>
+                    <div class="detail-value"><a href="https://calendar.app.google/wy9wTxMS2nM8jsvWA" target="_blank" rel="noopener">Book a time</a></div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">💼 LinkedIn</div>
-                    <div class="detail-value"><a href="https://linkedin.com/in/williamtanna2824" target="_blank">linkedin.com/in/williamtanna2824</a></div>
+                    <div class="detail-label">LinkedIn</div>
+                    <div class="detail-value"><a href="https://linkedin.com/in/williamtanna2824" target="_blank" rel="noopener">williamtanna2824</a></div>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-label">📸 Instagram</div>
-                    <div class="detail-value"><a href="https://instagram.com/williamtannaa" target="_blank">@Williamtannaa</a></div>
+                    <div class="detail-label">GitHub</div>
+                    <div class="detail-value"><a href="https://github.com/williamtanna2824" target="_blank" rel="noopener">williamtanna2824</a></div>
                 </div>
             </div>
         </div>
 
         <div class="story-section animate-on-scroll">
-            <h2>📖 My Story</h2>
+            <h2>How I got here</h2>
             <div class="story-content">
                 <div class="story-block">
-                    <h3>🎓 Academic Journey</h3>
-                    <p>At the University of Illinois Chicago, I'm pursuing a dual focus in Finance and Information & Decision Sciences. My coursework spans corporate finance, investment analysis, data analytics, and machine learning. As a CFA Level I candidate, I'm committed to achieving the highest standards in investment management.</p>
+                    <p>My path has been a mix of finance, data, and operations — and I've found that the overlap between those three is where I do my best work.</p>
+                    <p>On the finance side, I interned as a Finance &amp; Investment Analyst at Mirae Asset Sharekhan in Mumbai, managing over 20 client portfolios worth roughly $1.5M in AUM, running equity and derivatives analysis on Indian markets, and building Excel-based trade cycle reporting tools during a system migration. Later, as a Quantitative Research Analyst Intern at the Michael B. Michael Investment Fund, I built a full DCF thesis on Gap Inc. that was approved and allocated live capital — about 1% of the fund's $150K AUM — after I made the case that the stock was worth $43.12 against a $21.01 market price, a ~105% implied upside.</p>
+                    <p>On the building side, I co-founded <a href="https://github.com/williamtanna2824/ClearSpend-Analytics" target="_blank" rel="noopener">ClearSpend Analytics</a>, an AI-driven vendor spend analysis platform that landed 3 clients in its first month and identified over $15K in savings for them. I also designed and built <a href="https://github.com/williamtanna2824/chargeback-risk-model" target="_blank" rel="noopener">Chargeback Risk Intelligence</a>, a full-stack fintech ML platform with an XGBoost model (23 features, 0.987 ROC-AUC) and Claude API integration for real-time fraud analysis. Separately, I built a credit risk model on the Lending Club dataset using LightGBM, taking it from 57% to 95% accuracy through iterative feature engineering — the project that got me hooked on applied ML in the first place.</p>
+                    <p>That combination of finance instinct and technical build-ability came together at the 2025 Chicago Tech Circle Competition (backed by Google), where my team won 1st place with WITCH FOR FITCH, an ESG automation platform that cut PDF processing costs from $2.50 to $0.06 per document — 56x cheaper — while scaling monthly capacity from 1,600 to 28,800 documents, an 18x speed improvement.</p>
+                    <p>On the operations and leadership side, I spent my undergrad years at UIC Recreation &amp; Wellbeing, working my way up from Operations Attendant to Intramural Supervisor to Social Media Manager to Operations &amp; Facilities Coordinator (OFC) Supervisor — earning a promotion after just one semester and becoming one of only two students selected for that supervisory role. Running a facility, managing student staff, and owning the social media presence taught me as much about people and execution as any classroom ever did.</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="story-section animate-on-scroll">
+            <h2>How I work</h2>
+            <div class="story-content">
                 <div class="story-block">
-                    <h3>💼 Professional Experience</h3>
-                    <p>My internship at Mirae Asset Sharekhan in Mumbai was transformative. I analyzed over ₹12 Cr ($1.5M) in client portfolios, developed investment strategies, and improved reporting processes. Currently, as a Student Equity Analyst at UIC's $150,000 Student Investment Fund, I conduct valuation modeling and present trade recommendations.</p>
+                    <p>I default to building rather than just theorizing — if I can prototype something to test an idea, I will. I like decomposing a messy problem into a model, a script, or a spreadsheet I can actually manipulate, then iterating from there rather than waiting for a perfect plan. I'm comfortable moving between the analytical (DCFs, factor models, risk models) and the operational (managing people, processes, and deadlines), and I tend to gravitate toward roles that ask for both.</p>
+                    <p>Where I want to take this: I'm building toward a career at the intersection of finance and technology — investment banking, fintech, or data-driven operations roles where I can use both the analytical rigor from my finance background and the technical instincts from the projects I've built on my own.</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="story-section animate-on-scroll">
+            <h2>Outside of work</h2>
+            <div class="story-content">
                 <div class="story-block">
-                    <h3>🏀 Beyond Finance</h3>
-                    <p>As a Campus Recreation Supervisor at UIC, I lead a team of 30+ officials managing weekly sports operations. I'm also documenting my 87-day transformation challenge on Instagram—growing from 0 to 93 followers in 16 days without marketing, with 30K views to date.</p>
-                </div>
-                <div class="transformation-block">
-                    <h3>🔥 87-Day Transformation Challenge</h3>
-                    <p>I'm currently documenting my fitness and personal growth journey on Instagram. Building an audience through consistency—no paid marketing, just authentic content. 0→93 followers in 16 days. 30K views to date.</p>
-                    <a href="https://instagram.com/williamtannaa" target="_blank">Follow on Instagram →</a>
-                </div>
-                <div class="story-block">
-                    <h3>💡 What Drives Me</h3>
-                    <p>I'm passionate about using data and technology to democratize access to sophisticated financial analysis. My goal is to bridge the gap between traditional finance and modern technology, creating solutions that combine fundamental analysis with machine learning and data science.</p>
+                    <p>I box, play golf, and grew up around football and soccer — I referee games when I get the chance. I follow basketball closely, document a personal fitness transformation on <a href="https://instagram.com/williamtannaa" target="_blank" rel="noopener">Instagram</a>, and eventually want to pursue a Commercial Pilot License.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
+    <footer class="site-footer">
+        <div class="site-footer-inner">
             <div class="social-links">
-                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
-                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank" rel="noopener">Instagram</a>
                 <a href="mailto:william@williamtanna.com">Email</a>
-                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+                <a href="https://github.com/williamtanna2824" target="_blank" rel="noopener">GitHub</a>
             </div>
-            <p>© 2025 William Tanna</p>
+            <p>© 2026 William Tanna</p>
         </div>
     </footer>
 
-    <script>
-        function navigateWithAnimation(event, url) {
-            event.preventDefault();
-            document.getElementById('pageTransition').classList.add('active');
-            setTimeout(() => { window.location.href = url; }, 400);
-        }
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
-        document.addEventListener('click', function(e) {
-            const nav = document.querySelector('nav');
-            const links = document.getElementById('navLinks');
-            if (!nav.contains(e.target) && links.classList.contains('active')) links.classList.remove('active');
-        });
-    </script>
+    <script src="js/site.js"></script>
+
 </body>
 </html>

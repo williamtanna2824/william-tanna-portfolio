@@ -6,23 +6,25 @@
     <title>Projects — William Tanna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* tokens from css/site.css */
         :root {
-            --black: #0a0a0a;
-            --black-soft: #141414;
-            --black-card: #111111;
-            --gold: #d4af37;
-            --gold-light: #e8c547;
-            --gold-dark: #b8960c;
-            --text: #e5e5e5;
-            --text-muted: #9a9a9a;
-            --border: rgba(212, 175, 55, 0.2);
+            --black: var(--bg);
+            --black-soft: var(--bg-soft);
+            --black-card: var(--bg-elevated);
+            --gold: var(--accent);
+            --gold-light: var(--accent-bright);
+            --gold-dark: var(--accent-2);
+            --text: var(--text);
+            --text-muted: var(--muted);
+            --border: var(--border);
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-family: var(--font-body, 'DM Sans', sans-serif);
             line-height: 1.7;
             color: var(--text);
             background: var(--black);
@@ -39,7 +41,7 @@
         .page-transition.active { opacity: 1; pointer-events: all; }
         .transition-content { text-align: center; }
         .tiger-runner { font-size: 4rem; color: var(--gold); }
-        .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
+        .loading-text { color: var(--gold); font-family: var(--font-display, Syne, sans-serif); font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
         nav {
             position: fixed; top: 0; right: 0;
             z-index: 1000;
@@ -111,7 +113,7 @@
             text-align: center;
         }
         .page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 2.75rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
@@ -417,20 +419,27 @@
                 grid-template-columns: 1fr;
             }
         }
+    
+        .page-header { padding-top: calc(var(--nav-h) + 3rem) !important; }
+        .chat-page { padding-top: calc(var(--nav-h) + 1rem); }
     </style>
 </head>
 <body>
-    <div class="page-transition" id="pageTransition">
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+        <div class="transition-wipe"></div>
         <div class="transition-content">
-            <div class="tiger-runner">🐅</div>
+            <div class="transition-mark">WT</div>
             <div class="loading-text">Loading</div>
         </div>
     </div>
 
-    <nav>
-        <div class="nav-container">
-            <button class="nav-plus" onclick="toggleMenu()" aria-label="Menu">+</button>
-            <ul class="nav-links" id="navLinks">
+    <div class="site-nav-backdrop" id="siteNavBackdrop"></div>
+
+    <header class="site-nav">
+        <div class="site-nav-inner">
+            <a href="/" class="site-brand" onclick="navigateWithAnimation(event, '/')">William <span>Tanna</span></a>
+            <button type="button" class="site-nav-toggle" id="siteNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNavLinks">+</button>
+            <ul class="site-nav-links" id="siteNavLinks">
                 <li><a href="/" onclick="navigateWithAnimation(event, '/')">Home</a></li>
                 <li><a href="/about" onclick="navigateWithAnimation(event, '/about')">About</a></li>
                 <li><a href="/resume" onclick="navigateWithAnimation(event, '/resume')">Resume</a></li>
@@ -440,7 +449,7 @@
                 <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <!-- Page Header -->
     <section class="page-header animate-on-scroll">
@@ -481,7 +490,7 @@
                     </div>
                     <div class="detail-box">
                         <div class="detail-label">Role</div>
-                        <div class="detail-value">AI &amp; Data Lead</div>
+                        <div class="detail-value">Data &amp; Automation Lead</div>
                     </div>
                 </div>
 
@@ -495,28 +504,90 @@
                     </ul>
                 </div>
 
+                
                 <div class="project-files">
-                    <h3>📁 Project Files</h3>
+                    <h3>Links</h3>
                     <div class="files-grid">
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📄</div>
+                        <a href="https://github.com/williamtanna2824/esg-scope-finder" target="_blank" rel="noopener" class="file-link">
+                            <div class="file-icon">GH</div>
                             <div class="file-info">
-                                <div class="file-name">Case Study &amp; Overview</div>
-                                <div class="file-type">PDF Document</div>
+                                <div class="file-name">GitHub — ESG Scope Finder</div>
+                                <div class="file-type">Repository</div>
                             </div>
                         </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ClearSpend Analytics -->
+        <div class="project-card animate-on-scroll" id="clearspend">
+            <div class="project-header">
+                <div class="project-number">PROJECT</div>
+                <h2 class="project-title">ClearSpend Analytics</h2>
+                <p class="project-subtitle">AI-driven vendor spend analysis platform — co-founder</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">ETL</span>
+                    <span class="project-tag">AI</span>
+                    <span class="project-tag">Fintech</span>
+                </div>
+            </div>
+            <div class="project-body">
+                <p class="project-description">
+                    Co-founded an AI-driven vendor spend analysis platform that landed 3 clients in its first month
+                    and identified over $15K in savings through ETL pipelines, KPI dashboards, and investor-grade materials.
+                </p>
+                <div class="project-files">
+                    <h3>Links</h3>
+                    <div class="files-grid">
+                        <a href="https://github.com/williamtanna2824/ClearSpend-Analytics" target="_blank" rel="noopener" class="file-link">
+                            <div class="file-icon">GH</div>
                             <div class="file-info">
-                                <div class="file-name">Competition Slide Deck</div>
-                                <div class="file-type">PDF Presentation</div>
+                                <div class="file-name">GitHub — ClearSpend Analytics</div>
+                                <div class="file-type">Repository</div>
                             </div>
                         </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">💻</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chargeback Risk Intelligence -->
+        <div class="project-card animate-on-scroll" id="chargeback">
+            <div class="project-header">
+                <div class="project-number">PROJECT</div>
+                <h2 class="project-title">Chargeback Risk Intelligence</h2>
+                <p class="project-subtitle">Full-stack fintech ML platform for pre-dispute risk scoring</p>
+                <div class="project-tags">
+                    <span class="project-tag">XGBoost</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Claude API</span>
+                    <span class="project-tag">Fintech</span>
+                </div>
+            </div>
+            <div class="project-body">
+                <p class="project-description">
+                    Designed and built a full-stack chargeback risk platform with a 23-feature XGBoost model
+                    (0.987 ROC-AUC) and Claude API integration for real-time fraud analysis narratives.
+                </p>
+                <div class="project-highlights">
+                    <h3>Key Highlights</h3>
+                    <ul>
+                        <li>23-feature ML scoring engine with live API, multi-tenant patterns, and webhook ingestion.</li>
+                        <li><strong>0.987 ROC-AUC</strong> — strong separation between chargebacks and clean transactions.</li>
+                        <li>Claude API narrative generation across country risk profiles to speed analyst review.</li>
+                    </ul>
+                </div>
+                <div class="project-files">
+                    <h3>Links</h3>
+                    <div class="files-grid">
+                        <a href="https://github.com/williamtanna2824/chargeback-risk-model" target="_blank" rel="noopener" class="file-link">
+                            <div class="file-icon">GH</div>
                             <div class="file-info">
-                                <div class="file-name">System Prototype</div>
-                                <div class="file-type">GitHub / Demo Link</div>
+                                <div class="file-name">GitHub — Chargeback Risk Model</div>
+                                <div class="file-type">Repository</div>
                             </div>
                         </a>
                     </div>
@@ -528,8 +599,8 @@
         <div class="project-card animate-on-scroll">
             <div class="project-header">
                 <div class="project-number">PROJECT 02</div>
-                <h2 class="project-title">🤖 Pathfind Careers AI Workflow</h2>
-                <p class="project-subtitle">Multi-agent GPT system for scalable résumé screening and job matching</p>
+                <h2 class="project-title">Pathfind Careers — Résumé Matching Workflow</h2>
+                <p class="project-subtitle">AI workflow system for scalable résumé screening and job matching</p>
                 <div class="project-tags">
                     <span class="project-tag">AI Agents</span>
                     <span class="project-tag">LogicStudio</span>
@@ -562,38 +633,11 @@
                 <div class="project-highlights">
                     <h3>Key Highlights</h3>
                     <ul>
-                        <li>Developed a <strong>multi-agent GPT system</strong> in LogicStudio that reduced résumé review time by <strong>98%</strong> while improving screening accuracy by <strong>~90%</strong>.</li>
-                        <li>Designed <strong>5 specialized agents</strong> for parsing, matching, and outreach, lowering costs from <strong>~$4,000</strong> to <strong>~$23 per agent</strong>.</li>
+                        <li>Developed a <strong>AI workflow system</strong> in LogicStudio that reduced résumé review time by <strong>98%</strong> while improving screening accuracy by <strong>~90%</strong>.</li>
+                        <li>Designed <strong>specialized workflow steps</strong> for parsing, matching, and outreach, lowering costs from <strong>~$4,000</strong> to <strong>~$23 per run</strong>.</li>
                         <li>Delivered a functional prototype that consistently surfaced <strong>top-10 job matches</strong> with verified listings and personalized recruiter email drafts.</li>
                         <li>Packaged the workflow as “Pathfind Careers,” a reusable module career centers and platforms can plug into existing pipelines.</li>
                     </ul>
-                </div>
-
-                <div class="project-files">
-                    <h3>📁 Project Files</h3>
-                    <div class="files-grid">
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📄</div>
-                            <div class="file-info">
-                                <div class="file-name">Workflow Documentation</div>
-                                <div class="file-type">PDF Overview</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📊</div>
-                            <div class="file-info">
-                                <div class="file-name">System Diagram</div>
-                                <div class="file-type">Architecture Diagram</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">💻</div>
-                            <div class="file-info">
-                                <div class="file-name">Agent Configs</div>
-                                <div class="file-type">LogicStudio / GitHub</div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -636,38 +680,11 @@
                 <div class="project-highlights">
                     <h3>Key Highlights</h3>
                     <ul>
-                        <li>Developed a <strong>LightGBM</strong> model that boosted loan-default prediction accuracy from <strong>57%</strong> to <strong>99.9%</strong>, cutting projected losses by <strong>95%</strong>.</li>
+                        <li>Developed a <strong>LightGBM</strong> model that boosted loan-default prediction accuracy from <strong>57%</strong> to <strong>95%</strong>, cutting projected losses by <strong>95%</strong>.</li>
                         <li>Engineered features and tuned hyperparameters across <strong>50+ borrower variables</strong> to improve precision and recall.</li>
                         <li>Created a confusion-matrix-based ROI analysis and Model Card to tie performance to <strong>~$889M</strong> in projected profit impact.</li>
                         <li>Explicitly addressed fairness and bias mitigation, framing the model for responsible deployment in a real lending context.</li>
                     </ul>
-                </div>
-
-                <div class="project-files">
-                    <h3>📁 Project Files</h3>
-                    <div class="files-grid">
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📄</div>
-                            <div class="file-info">
-                                <div class="file-name">Model Report</div>
-                                <div class="file-type">PDF Document</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📊</div>
-                            <div class="file-info">
-                                <div class="file-name">Performance Metrics</div>
-                                <div class="file-type">Charts &amp; Tables</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">💻</div>
-                            <div class="file-info">
-                                <div class="file-name">Jupyter Notebook</div>
-                                <div class="file-type">GitHub Repository</div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -676,7 +693,7 @@
         <div class="project-card animate-on-scroll">
             <div class="project-header">
                 <div class="project-number">PROJECT 04</div>
-                <h2 class="project-title">📈 Advanced Investment Management – Gap Inc. Equity Thesis</h2>
+                <h2 class="project-title">Gap Inc. Equity Research — Michael B. Michael Investment Fund</h2>
                 <p class="project-subtitle">Buy-side research on Gap Inc. within a real-money student portfolio</p>
                 <div class="project-tags">
                     <span class="project-tag">Equity Research</span>
@@ -687,15 +704,15 @@
             </div>
             <div class="project-body">
                 <p class="project-description">
-                    Served as a Student Equity Analyst in UIC’s Advanced Investment Management course, 
-                    covering the Consumer Goods sector and contributing to buy-side decisions for a live, 
-                    real-money portfolio.
+                    As a Quantitative Research Analyst Intern at the Michael B. Michael Investment Fund (UIC),
+                    I covered Consumer Goods and contributed to buy-side decisions for a live, real-money
+                    student portfolio — including a Gap Inc. thesis that received committee approval and a live allocation.
                 </p>
 
                 <div class="project-details">
                     <div class="detail-box">
                         <div class="detail-label">Context</div>
-                        <div class="detail-value">UIC FIN 456 – Advanced Investment Management</div>
+                        <div class="detail-value">Michael B. Michael Investment Fund · UIC FIN 456</div>
                     </div>
                     <div class="detail-box">
                         <div class="detail-label">Duration</div>
@@ -715,33 +732,6 @@
                         <li>Recommended a <strong>1% allocation (~$1,200)</strong> to narrow Consumer Discretionary underweight from <strong>-2.65%</strong> to <strong>-1.65%</strong> while trimming Financials exposure.</li>
                         <li>Presented weekly to an investment committee of faculty and peers, defending assumptions, risk scenarios, and trade rationales.</li>
                     </ul>
-                </div>
-
-                <div class="project-files">
-                    <h3>📁 Project Files</h3>
-                    <div class="files-grid">
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📄</div>
-                            <div class="file-info">
-                                <div class="file-name">Gap Inc. Investment Thesis</div>
-                                <div class="file-type">PDF Report</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📊</div>
-                            <div class="file-info">
-                                <div class="file-name">Valuation Model</div>
-                                <div class="file-type">Excel / Sheets</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">💼</div>
-                            <div class="file-info">
-                                <div class="file-name">Committee Slides</div>
-                                <div class="file-type">PDF Presentation</div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -790,74 +780,23 @@
                         <li>Contributed to the sale of <strong>50+ apparel items</strong> by boosting brand visibility via targeted, cross-channel outreach.</li>
                     </ul>
                 </div>
-
-                <div class="project-files">
-                    <h3>📁 Project Files</h3>
-                    <div class="files-grid">
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📄</div>
-                            <div class="file-info">
-                                <div class="file-name">Campaign Brief</div>
-                                <div class="file-type">PDF Document</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">🖼️</div>
-                            <div class="file-info">
-                                <div class="file-name">Catalog Preview</div>
-                                <div class="file-type">Image / PDF</div>
-                            </div>
-                        </a>
-                        <a href="#" class="file-link">
-                            <div class="file-icon">📢</div>
-                            <div class="file-info">
-                                <div class="file-name">Marketing Assets</div>
-                                <div class="file-type">Social &amp; Email Mockups</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
+        <footer class="site-footer">
+        <div class="site-footer-inner">
             <div class="social-links">
-                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
-                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank" rel="noopener">Instagram</a>
                 <a href="mailto:william@williamtanna.com">Email</a>
-                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+                <a href="https://github.com/williamtanna2824" target="_blank" rel="noopener">GitHub</a>
             </div>
-            <p>&copy; 2025 William Tanna. All rights reserved.</p>
-            <p style="opacity: 0.7; margin-top: 0.5rem;">Built with passion for finance and technology</p>
+            <p>© 2026 William Tanna</p>
         </div>
     </footer>
 
-    <script>
-        function navigateWithAnimation(event, url) {
-            event.preventDefault();
-            document.getElementById('pageTransition').classList.add('active');
-            setTimeout(() => { window.location.href = url; }, 400);
-        }
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const navLinks = document.getElementById('navLinks');
-            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="js/site.js"></script>
+    
 </body>
 </html>

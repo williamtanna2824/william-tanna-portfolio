@@ -1,103 +1,70 @@
 WILLIAM CHETANKUMAR TANNA — KNOWLEDGE BASE (Portfolio Website)
 
-LAST UPDATED: February 2026 — Use this date when interpreting "Present" in experience dates.
+LAST UPDATED: August 2026 — Use this date when interpreting "Present" in experience dates.
 
 CONTACT
 - Name: William Chetankumar Tanna
-- Location: Chicago, IL 60607
-- Phone: (312)-686-4516
+- Location: Chicago, IL
 - Email: william@williamtanna.com
 - LinkedIn: linkedin.com/in/williamtanna2824
+- GitHub: github.com/williamtanna2824
 - Website: williamtanna.com
-- Schedule a meeting: https://calendar.app.google/wy9wTxMS2nM8jsvWA (for recruiters, hiring managers, or anyone who wants to talk)
+- Schedule a meeting: https://calendar.app.google/wy9wTxMS2nM8jsvWA
 
 EDUCATION
-- University of Illinois Chicago, College of Business Administration | Aug 2022 – May 2026
-- Bachelor of Science: Finance, Information & Decision Sciences
-- Concentrations: Business Analytics, Supply Chain & Operations
-- Dean's List: Spring 2023, Fall 2023, Spring 2024, Fall 2024, Fall 2025
+- University of Illinois Chicago | Graduated May 2026 · Cum Laude
+- Dual degrees: Finance and Information & Decision Sciences (Business Analytics concentration)
+- GPA: 3.52
+- Dean's List: six semesters
+- CFA Level I Candidate — exam November 2026
 
 PROFESSIONAL EXPERIENCE
-NOTE: William's CURRENT / LATEST role is Campus Recreation at UIC (Nov 2023 – Present). Sharekhan was a past internship (ended Sep 2024).
+NOTE: Latest / current narrative emphasizes building (ClearSpend, Chargeback) plus UIC Recreation leadership. Sharekhan and Michael B. Michael Fund are past finance internships.
 
-1) Campus Recreation at UIC — Intramural Sports Referee Supervisor (Chicago, IL) | Nov 2023 – Present
-- Supervised and trained 30+ referees across multiple sports, maintaining consistent rule enforcement and a safe, controlled game environment.
-- Coordinated 50+ weekly game-day operations, managing field readiness, staff assignments, and incident response.
-- De-escalated dozens of high-pressure disputes each semester, leveraging strong communication skills to preserve game integrity.
-- Supported referee recruitment and onboarding, helping evaluate candidates and accelerate training for new hires.
+1) UIC Recreation & Wellbeing — Operations & Facilities Coordinator (OFC) Supervisor (and prior roles: Operations Attendant → Intramural Supervisor → Social Media Manager → OFC Supervisor)
+- Promoted after one semester; one of only two students selected for OFC Supervisor role
+- Ran facility operations, managed student staff, owned social media presence
 
-2) Campus Recreation at UIC — Street Team and Outdoor Fields Supervisor (Chicago, IL)
-- Supervise daily operations of the Outdoor Fields Complex, enforcing policies to maintain a safe and professional athletic environment.
-- Coordinate setup and teardown of equipment for 10+ weekly sporting events, ensuring on-time execution and operational readiness.
-- Conduct walkthroughs, enforce field protocols, respond to incidents, and escalate safety concerns when necessary.
-- Complete and file nightly facility, accident, and incident reports for compliance and internal review.
+2) ClearSpend Analytics — Co-founder
+- AI-driven vendor spend analysis platform
+- 3 clients in first month; $15K+ identified savings
+- GitHub: https://github.com/williamtanna2824/ClearSpend-Analytics
 
-3) Mirae Asset Sharekhan — Finance Intern (Mumbai, India) | Jul 2024 – Sep 2024 [PAST]
-- Performed financial analysis and portfolio diagnostics on 20+ investor accounts worth INR 12 Cr ($1.5M) to support forecasting accuracy.
-- Presented equity and mutual fund investment ideas, contributing to three new client acquisitions and stronger portfolio diversification.
-- Automated transaction tracking in Excel, improving reporting efficiency by 30% and enhancing data accuracy for financial statements.
-- Verified client KYC and risk profiles during CRM migration to ensure complete data integrity and compliance in reporting.
+3) Chargeback Risk Intelligence — Builder
+- Full-stack fintech ML platform; XGBoost (23 features, 0.987 ROC-AUC); Claude API for real-time fraud narratives
+- GitHub: https://github.com/williamtanna2824/chargeback-risk-model
+
+4) Michael B. Michael Investment Fund — Quantitative Research Analyst Intern
+- Full DCF thesis on Gap Inc.; approved and allocated ~1% of $150K AUM live capital
+- Thesis value $43.12 vs market $21.01 (~105% implied upside)
+
+5) Mirae Asset Sharekhan — Finance & Investment Analyst Intern (Mumbai) | past
+- 20+ client portfolios ~$1.5M AUM; equity and derivatives analysis; Excel trade-cycle reporting during CRM/system migration
 
 PROJECTS & LEADERSHIP
+A) WITCH FOR FITCH — ESG Automation | 1st place, 2025 Chicago Tech Circle (Google-backed)
+- Cut PDF processing from $2.50 to $0.06 per document (56x cheaper); capacity 1,600 → 28,800 docs/month (18x)
+- GitHub-related: https://github.com/williamtanna2824/esg-scope-finder
+- YouTube demo: pending (user will provide link)
 
-A) Finance Mentorship Program | University of Illinois Chicago | Sep 2025 – Present
-- Mentor new finance students through three structured meetings focused on internship preparation, course planning, and professional development.
-- Provide one-on-one guidance on résumé refinement, networking strategies, and navigating campus career resources.
-- Share personal experience in securing internships and balancing academic, CFA, and extracurricular commitments.
+B) ClearSpend Analytics — see above
+C) Chargeback Risk Intelligence — see above
+D) Lending Club Credit Risk — LightGBM; accuracy improved from 57% to 95% via feature engineering
+E) Finance Mentorship Program | UIC
 
-B) ESG Automation Platform "WITCH FOR FITCH" — Winner, Chicago Tech Circle Competition | Nov 2025 – Dec 2025
-- Built platform automating ESG PDF search and Scope 1–3 extraction in ~20 seconds with ~95% consistency.
-- Re-engineered backend with multi-step validation to remove false positives and increase throughput by 1700%.
-- Delivered scalable pipeline that is 56x cheaper and 18x faster than human review.
-- Context: UIC Project – FIN 294, Data + AI
-
-C) Pathfind Careers AI Workflow | Red Circle Consulting | Oct 2025 – Nov 2025
-- Developed multi-agent GPT system in LogicStudio that reduced résumé review time, improving speed by 98% and accuracy by 90%.
-- Designed five specialized agents to automate résumé parsing, job matching, and outreach while lowering costs from $4,000 to $23 per agent.
-- Delivered functional prototype generating top 10 job matches with verified listings and personalized recruiter email drafts.
-- Context: UIC Project – FIN 294, Data + AI
-
-D) City Analytics GPT Automation | Oct 2025
-- Built two GPT agents to automate large-scale data cleaning and feature merging for 500+ U.S. cities using Python and Pandas.
-- Integrated health, income, and cost-of-living datasets into a unified model to generate rankings and data visualizations.
-- Produced Top-5 and Bottom-3 City Insights Report identifying economic disparities and regional cost trends.
-- Context: UIC Project – FIN 294, Data + AI
-
-E) Lending Club Credit Risk Modeling | Sep 2025 – Oct 2025
-- Developed LightGBM model that improved loan-default prediction accuracy from 57% to 99.9%, cutting losses by 95% and generating $889M in projected profit.
-- Applied feature engineering, data preprocessing, and hyperparameter tuning on 150+ borrower variables.
-- Created confusion-matrix-based ROI analysis and Model Card addressing business impact, fairness, and bias mitigation.
-- Context: UIC Project – FIN 294, Data + AI
-
-F) Advanced Investment Management (FIN 456) — Student Equity Analyst, Consumer Goods Sector | Jan 2025 – May 2025
-- Managed part of $150,000 real-money student portfolio using Bloomberg Terminal for equity screening, valuation, and performance tracking.
-- Authored 20+ page investment thesis on Gap Inc., supporting "Buy" rating based on DCF valuation ($43.12 vs. $21.01) and 15.2% projected growth.
-- Proposed 1% portfolio allocation (~$1,200) to reduce Financials overweight and improve Consumer Discretionary exposure.
-
-SKILLS (use for "what are William's skills" — describe enthusiastically)
-- Financial Analysis & Modeling: Financial Modeling, Equity Research, Risk Assessment, Forecasting, Portfolio Analysis, Quantitative Finance, FP&A
-- Data & AI Analytics: Business Data Mining, Data Cleaning, Machine Learning (LightGBM, XGBoost), Model Evaluation, GPT/LLM Systems, Automation
-- Technical Tools: Bloomberg Terminal, R Studio, Excel (Advanced), Microsoft Access, SQL, Python, CRM Systems, Website Building, Tableau
-
-CERTIFICATIONS
-- SAP Global Trade Services — Record of Achievement (SAP Learning)
-- Business Analysis Foundations — NASBA, IIBA, PMI
-- Financial Modeling Foundations — NASBA
-- AWS Academy — Data Engineering (AWS Academy)
-
-CFA: CFA Level I Candidate (February 2025)
-
-GOALS
-- Short term: Finish CFA in 2026, complete bachelor's degree, land full-time job in credit, investment banking, or asset management
-- Medium term: Earn CFA charter within 2–3 years, work in Chicago
-
-EXTRACURRICULAR ACTIVITIES
-- Finance Mentorship Program | UIC | Sep 2025 – Present — Mentors new finance students on internship prep, course planning, résumé refinement, and networking
-- 87-Day Transformation Challenge | Instagram | 2025 — Documenting fitness and personal growth; grew from 0 to 93 followers in 16 days, 30K views total (no paid marketing)
+HOW WILLIAM WORKS
+- Defaults to building/prototyping over pure theory
+- Comfortable in analytical (DCF, factor/risk models) and operational (people, process, deadlines) work
+- Career target: IB, fintech, or data-driven ops at finance × technology intersection
 
 PERSONAL / INTERESTS
-- Chicago Cubs fan, Chicago Bulls fan, loves cricket, follows boxing
+- Boxing, golf, football, soccer (referees); follows basketball
+- Personal interests include boxing, golf, soccer/football officiating, basketball, fitness, and pursuing a CPL long-term; Instagram @williamtannaa (personal, not a primary professional signal)
+- Aspires to pursue a Commercial Pilot License
 
 BOT RULES
+- Speak as William in first person when answering about him
 - If asked for info not in the knowledge base, say: "I don't have that on my site yet — feel free to reach out directly!"
 - Do not guess or invent details.
+- Schedule link: https://calendar.app.google/wy9wTxMS2nM8jsvWA
+- Email: william@williamtanna.com

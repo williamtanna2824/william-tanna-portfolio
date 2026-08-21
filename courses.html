@@ -6,23 +6,25 @@
     <title>Courses — William Tanna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* tokens from css/site.css */
         :root {
-            --black: #0a0a0a;
-            --black-soft: #141414;
-            --black-card: #111111;
-            --gold: #d4af37;
-            --gold-light: #e8c547;
-            --gold-dark: #b8960c;
-            --text: #e5e5e5;
-            --text-muted: #9a9a9a;
-            --border: rgba(212, 175, 55, 0.2);
+            --black: var(--bg);
+            --black-soft: var(--bg-soft);
+            --black-card: var(--bg-elevated);
+            --gold: var(--accent);
+            --gold-light: var(--accent-bright);
+            --gold-dark: var(--accent-2);
+            --text: var(--text);
+            --text-muted: var(--muted);
+            --border: var(--border);
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-family: var(--font-body, 'DM Sans', sans-serif);
             line-height: 1.7;
             color: var(--text);
             background: var(--black);
@@ -39,7 +41,7 @@
         .page-transition.active { opacity: 1; pointer-events: all; }
         .transition-content { text-align: center; }
         .tiger-runner { font-size: 4rem; color: var(--gold); }
-        .loading-text { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
+        .loading-text { color: var(--gold); font-family: var(--font-display, Syne, sans-serif); font-size: 1rem; letter-spacing: 0.3em; margin-top: 1rem; }
         nav {
             position: fixed; top: 0; right: 0;
             z-index: 1000;
@@ -111,7 +113,7 @@
             text-align: center;
         }
         .page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display, Syne, sans-serif);
             font-size: 2.75rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
@@ -312,20 +314,27 @@
                 text-align: center;
             }
         }
+    
+        .page-header { padding-top: calc(var(--nav-h) + 3rem) !important; }
+        .chat-page { padding-top: calc(var(--nav-h) + 1rem); }
     </style>
 </head>
 <body>
-    <div class="page-transition" id="pageTransition">
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+        <div class="transition-wipe"></div>
         <div class="transition-content">
-            <div class="tiger-runner">🐅</div>
+            <div class="transition-mark">WT</div>
             <div class="loading-text">Loading</div>
         </div>
     </div>
 
-    <nav>
-        <div class="nav-container">
-            <button class="nav-plus" onclick="toggleMenu()" aria-label="Menu">+</button>
-            <ul class="nav-links" id="navLinks">
+    <div class="site-nav-backdrop" id="siteNavBackdrop"></div>
+
+    <header class="site-nav">
+        <div class="site-nav-inner">
+            <a href="/" class="site-brand" onclick="navigateWithAnimation(event, '/')">William <span>Tanna</span></a>
+            <button type="button" class="site-nav-toggle" id="siteNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNavLinks">+</button>
+            <ul class="site-nav-links" id="siteNavLinks">
                 <li><a href="/" onclick="navigateWithAnimation(event, '/')">Home</a></li>
                 <li><a href="/about" onclick="navigateWithAnimation(event, '/about')">About</a></li>
                 <li><a href="/resume" onclick="navigateWithAnimation(event, '/resume')">Resume</a></li>
@@ -335,7 +344,7 @@
                 <li><a href="/chat" onclick="navigateWithAnimation(event, '/chat')">AI Chat</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <!-- Page Header -->
     <section class="page-header animate-on-scroll">
@@ -837,42 +846,19 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
+        <footer class="site-footer">
+        <div class="site-footer-inner">
             <div class="social-links">
-                <a href="https://linkedin.com/in/williamtanna2824" target="_blank">LinkedIn</a>
-                <a href="https://instagram.com/williamtannaa" target="_blank">Instagram</a>
+                <a href="https://linkedin.com/in/williamtanna2824" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://instagram.com/williamtannaa" target="_blank" rel="noopener">Instagram</a>
                 <a href="mailto:william@williamtanna.com">Email</a>
-                <a href="https://github.com/williamtanna" target="_blank">GitHub</a>
+                <a href="https://github.com/williamtanna2824" target="_blank" rel="noopener">GitHub</a>
             </div>
-            <p>© 2025 William Tanna</p>
+            <p>© 2026 William Tanna</p>
         </div>
     </footer>
 
-    <script>
-        function navigateWithAnimation(event, url) {
-            event.preventDefault();
-            document.getElementById('pageTransition').classList.add('active');
-            setTimeout(() => { window.location.href = url; }, 400);
-        }
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav');
-            const navLinks = document.getElementById('navLinks');
-            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="js/site.js"></script>
+    
 </body>
 </html>
