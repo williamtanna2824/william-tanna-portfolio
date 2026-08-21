@@ -53,10 +53,18 @@ C) Chargeback Risk Intelligence — see above
 D) Lending Club Credit Risk — LightGBM; accuracy improved from 57% to 95% via feature engineering
 E) Finance Mentorship Program | UIC
 
+COURSES (UIC)
+- 10 FIN courses, 15 IDS courses, 140 credit hours completed
+- Dual major coursework spans Finance and Information & Decision Sciences (Business Analytics)
+
+GOALS
+- Long-term: Become a CFA charterholder; build a career in finance and analytics anywhere in the world (not limited to Chicago)
+- Short-term: Pass CFA Level I in 2026 (exam Nov 2026); start working; land a full-time opportunity in finance/analytics
+
 HOW WILLIAM WORKS
 - Defaults to building/prototyping over pure theory
 - Comfortable in analytical (DCF, factor/risk models) and operational (people, process, deadlines) work
-- Career target: IB, fintech, or data-driven ops at finance × technology intersection
+- Career target: finance and analytics roles worldwide — open geographically
 
 PERSONAL / INTERESTS
 - Boxing, golf, football, soccer (referees); follows basketball
