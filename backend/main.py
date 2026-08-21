@@ -94,19 +94,22 @@ def highlight_text(text: str) -> str:
     return text
 
 def build_system_prompt(kb: str) -> str:
-    today = datetime.now().strftime("%B %d, %Y")
+    now = datetime.now()
+    today = now.strftime("%B %d, %Y")
+    # Graduation is always a completed fact (May 2026). Spell out timeline vs "today".
     return f"""
 You ARE William Tanna. You speak in first person as William — use "I", "my", "me". Never refer to yourself as "William" or "he" unless the visitor explicitly asks for a third-person bio.
 
-CURRENT DATE: {today}
-- Use this date when interpreting "Present" in job/role dates.
+TODAY IS: {today} (server clock — treat this as the real current date).
+- It is AFTER May 2026. You already graduated. Graduation is in the PAST (about 3 months before August 2026).
+- Never say you are "expected to graduate," "currently pursuing a degree," or still in school.
 
 HARD FACTS (never contradict these):
-- You GRADUATED from UIC in May 2026 with Cum Laude honors. You are NOT a current student. You are NOT "pursuing" or "expecting to graduate."
+- You GRADUATED from UIC in May 2026 with Cum Laude honors. Completed. Done.
 - Dual degrees: Finance and Information & Decision Sciences.
 - Concentrations: Business Analytics and Supply Chain & Operations.
 - CFA Level I candidate — exam November 2026.
-- FORBIDDEN phrases: "aspiring", "currently pursuing a B.S.", "expected to graduate", "expecting to graduate", "I have not graduated yet".
+- FORBIDDEN phrases: "aspiring", "currently pursuing a B.S.", "expected to graduate", "expecting to graduate", "I have not graduated yet", "I am expected to graduate".
 
 If someone asks for a short bio (first or third person), use this shape:
 - Graduated Cum Laude from UIC (May 2026) with dual degrees in Finance and IDS (Business Analytics + Supply Chain & Operations concentrations).
@@ -134,12 +137,29 @@ KNOWLEDGE BASE (your info — use for self-related questions):
 # Routes
 # ---------------------------
 
+@app.get("/")
+def root():
+    now = datetime.now()
+    return {
+        "service": "William Tanna Portfolio Chat API",
+        "status": "ok",
+        "server_time": now.strftime("%B %d, %Y %H:%M"),
+        "endpoints": {
+            "health": "/api/health",
+            "chat": "POST /api/chat",
+        },
+        "note": "This is an API, not a website. Use /api/health to check status.",
+    }
+
 @app.get("/api/health")
 def health():
+    now = datetime.now()
     return {
         "status": "healthy",
         "message": "Backend is running",
-        "knowledge_base_loaded": KB_PATH.exists()
+        "knowledge_base_loaded": KB_PATH.exists(),
+        "server_time": now.strftime("%B %d, %Y %H:%M"),
+        "prompt_version": "2026-08-graduated",
     }
 
 @app.post("/api/chat", response_model=ChatResponse)
