@@ -15,11 +15,15 @@
   window.navigateWithAnimation = function (event, url) {
     if (event) event.preventDefault();
     const overlay = qs("#pageTransition");
-    if (overlay) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (overlay && !reduced) {
       overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
       setTimeout(function () {
         window.location.href = url;
-      }, 320);
+      }, 580);
+    } else if (overlay && reduced) {
+      window.location.href = url;
     } else {
       window.location.href = url;
     }
