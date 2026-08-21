@@ -45,7 +45,7 @@ PROJECTS & LEADERSHIP
 A) WITCH FOR FITCH — ESG Automation | 1st place, 2025 Chicago Tech Circle (Google-backed)
 - Cut PDF processing from $2.50 to $0.06 per document (56x cheaper); capacity 1,600 → 28,800 docs/month (18x)
 - GitHub-related: https://github.com/williamtanna2824/esg-scope-finder
-- YouTube demo: pending (user will provide link)
+- YouTube demo: https://youtu.be/WHxCfudBnkc
 
 B) ClearSpend Analytics — see above
 C) Chargeback Risk Intelligence — see above
