@@ -177,6 +177,118 @@
         }
         .home-cta .cta-buttons { justify-content: center; }
 
+        .dnp {
+            max-width: 520px;
+            margin: 0 auto 4.5rem;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+        .dnp-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 0.85rem;
+            font-weight: 600;
+        }
+        .dnp-btn {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.95rem 1.6rem;
+            border: 2px solid #8b3a2a;
+            background: #8b3a2a;
+            color: #faf7f2;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 0 #5c2418;
+        }
+        .dnp-btn:hover {
+            background: #a34532;
+            transform: translateY(-1px);
+        }
+        .dnp-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #5c2418;
+        }
+        .dnp-btn.is-shaking {
+            animation: dnpShake 0.45s ease;
+        }
+        .dnp-btn.is-pressed {
+            background: var(--accent-2);
+            border-color: var(--accent-2);
+            box-shadow: none;
+            opacity: 0.85;
+            cursor: default;
+        }
+        @keyframes dnpShake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-6px) rotate(-1deg); }
+            40% { transform: translateX(6px) rotate(1deg); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+        .dnp-reveal {
+            display: none;
+            margin-top: 1.5rem;
+            text-align: left;
+            padding: 1.5rem 0 0;
+            border-top: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .dnp-reveal.is-open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dnp-reveal h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            margin: 0 0 0.5rem;
+            color: var(--accent-2);
+        }
+        .dnp-reveal > p {
+            color: var(--muted);
+            margin: 0 0 1rem;
+            font-size: 0.95rem;
+        }
+        .dnp-reveal ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.35rem;
+        }
+        .dnp-reveal li {
+            position: relative;
+            padding: 0.45rem 0 0.45rem 1.1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text);
+            border-bottom: 1px solid rgba(74, 55, 40, 0.08);
+        }
+        .dnp-reveal li:last-child { border-bottom: none; }
+        .dnp-reveal li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .dnp-reveal .cta-buttons {
+            justify-content: flex-start;
+            gap: 0.75rem;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .dnp-btn.is-shaking { animation: none; }
+            .dnp-reveal { transition: none; }
+        }
+
         /* Chat panel messages */
         .chat-panel-header {
             display: flex;
@@ -372,6 +484,28 @@
         </div>
     </section>
 
+    <section class="dnp animate-on-scroll" aria-label="Recruiter pitch">
+        <p class="dnp-eyebrow">For recruiters</p>
+        <button type="button" class="dnp-btn" id="dnpBtn" aria-expanded="false" aria-controls="dnpReveal">
+            Do not press
+        </button>
+        <div class="dnp-reveal" id="dnpReveal" hidden>
+            <h3>You pressed it. Here’s why hire me.</h3>
+            <p>Sixty-second case — no fluff.</p>
+            <ul>
+                <li>Cum Laude dual major in Finance + IDS (analytics), 3.52 GPA — CFA Level I exam Nov 2026.</li>
+                <li>Live student fund work: Gap Inc. DCF ($43.12 vs $21.01, 105% upside) → ~1% allocation (~$1,200) approved.</li>
+                <li>I ship: ClearSpend (3 clients, $15K+ savings), Chargeback ML (0.987 ROC-AUC), Tech Circle 1st place.</li>
+                <li>Finance instinct + build instinct — models, Python/SQL, and products recruiters can click.</li>
+                <li>Ready to start: looking for a full-time role in finance &amp; analytics, open worldwide.</li>
+            </ul>
+            <div class="cta-buttons">
+                <a href="https://calendar.app.google/wy9wTxMS2nM8jsvWA" target="_blank" rel="noopener" class="btn btn-primary">Schedule a call</a>
+                <a href="/resume" class="btn btn-secondary" onclick="navigateWithAnimation(event, '/resume')">Resume</a>
+            </div>
+        </div>
+    </section>
+
     <section class="home-cta animate-on-scroll">
         <h2>Want to talk?</h2>
         <p>Internships, full-time roles, or collaboration — happy to connect.</p>
@@ -417,6 +551,26 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (window.initChatShell) window.initChatShell();
+
+            var btn = document.getElementById('dnpBtn');
+            var reveal = document.getElementById('dnpReveal');
+            if (btn && reveal) {
+                btn.addEventListener('click', function () {
+                    if (btn.classList.contains('is-pressed')) return;
+                    btn.classList.add('is-shaking');
+                    setTimeout(function () {
+                        btn.classList.remove('is-shaking');
+                        btn.classList.add('is-pressed');
+                        btn.setAttribute('aria-expanded', 'true');
+                        btn.textContent = 'Told you not to';
+                        reveal.hidden = false;
+                        // force reflow so transition plays
+                        void reveal.offsetWidth;
+                        reveal.classList.add('is-open');
+                        reveal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 420);
+                });
+            }
         });
 
         function handleChatKeyDown(e) {
